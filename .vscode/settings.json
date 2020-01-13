@@ -1,0 +1,16 @@
+{
+    "markdownlint.config": {
+        "MD013": false,
+        "no-inline-html": {
+            "allowed_elements": [
+                "p",
+                "img"
+            ]
+        }
+    },
+    "cSpell.words": [
+        "degit",
+        "preload",
+        "sveltejs"
+    ]
+}
