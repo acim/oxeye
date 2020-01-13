@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "compression": "^1.7.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.8.7",
     "morgan": "^1.9.1",

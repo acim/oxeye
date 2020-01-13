@@ -1,9 +1,12 @@
 import * as winston from "winston";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "./daisy.env" });
 
 const logger = winston.createLogger({
   transports: [
     new winston.transports.Console({
-      level: process.env.NODE_ENV === "production" ? "warning" : "debug",
+      level: process.env.LOG_LEVEL || "warning",
       handleExceptions: true
     })
   ],

@@ -11,9 +11,10 @@ const dev = NODE_ENV === "development";
 const app = express();
 
 app.use(
-  morgan("combined", { stream: logger.stream }),
   compression({ threshold: 0 }),
   sirv("static", { dev }),
+  morgan("combined", { stream: logger.stream }),
+  express.json(),
   sapper.middleware()
 );
 
