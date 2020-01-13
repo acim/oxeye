@@ -1,13 +1,16 @@
-# Daisy - Sapper Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting
+# Daisy - [Sapper](https://sapper.svelte.dev/) Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting
 
 [![GitHub](https://img.shields.io/github/license/acim/daisy)](LICENSE)
 [![Build Status](https://drone.ablab.de/api/badges/acim/daisy/status.svg)](https://drone.ablab.de/acim/daisy)
+![GitHub issues](https://img.shields.io/github/issues-raw/acim/daisy)
 
 <p align="center"><img src="daisy.jpg"></p>
 
 ## Dependencies
 
-- [Express](https://expressjs.com/)
+* [MongoDB](https://www.mongodb.com/)
+* [Express](https://expressjs.com/)
+* [Mongoose](https://mongoosejs.com/)
 
 The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
 
@@ -60,9 +63,9 @@ This is the heart of your Sapper app. There are two kinds of routes — _pages_,
 
 There are three simple rules for naming the files that define your routes:
 
-- A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
-- The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
-- Files and directories with a leading underscore do _not_ create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would _not_ create a `/_helpers/datetime` route
+* A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
+* The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
+* Files and directories with a leading underscore do _not_ create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would _not_ create a `/_helpers/datetime` route
 
 ### static
 
