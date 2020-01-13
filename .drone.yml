@@ -1,0 +1,19 @@
+---
+kind: pipeline
+type: kubernetes
+name: default
+
+steps:
+- name: lint
+  image: node:12
+  commands:
+  - npm ci
+  - npm run lint
+  volumes:
+  - name: node-modules
+    path: /drone/src/node_modules
+
+volumes:
+- name: node-modules
+  host:
+    path: /tmp/cache/${DRONE_REPO}/node
