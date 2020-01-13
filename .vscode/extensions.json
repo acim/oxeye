@@ -3,9 +3,10 @@
 	// Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
-		"jamesbirtles.svelte-vscode",
-		"esbenp.prettier-vscode",
+		"christian-kohler.path-intellisense",
 		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"jamesbirtles.svelte-vscode",
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": []
