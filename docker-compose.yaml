@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo:4
+    container_name: daisy-mongo
+    restart: always
+    environment:
+    - MONGO_INITDB_DATABASE=daisy
+    - MONGO_INITDB_ROOT_USERNAME
+    - MONGO_INITDB_ROOT_PASSWORD
+    volumes:
+      - mongo:/data/db
+  mongo-express:
+    image: mongo-express
+    container_name: daisy-mongo-express
+    restart: always
+    environment:
+    - ME_CONFIG_MONGODB_ADMINUSERNAME
+    - ME_CONFIG_MONGODB_ADMINPASSWORD
+    ports:
+    - 3001:8081
+  daisy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: daisy
+    depends_on:
+      - mongo
+    restart: always
+    volumes:
+      - ./:/app
+    ports:
+    - 3000:3001
+volumes:
+  mongo:

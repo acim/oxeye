@@ -12,6 +12,24 @@
 * [Express](https://expressjs.com/)
 * [Mongoose](https://mongoosejs.com/)
 
+## Set local development environment
+
+* install direnv, Docker and docker-compose
+* create file .envrc in the project root directory with the following contents:
+
+``` bash
+export MONGO_INITDB_ROOT_USERNAME=admin
+export MONGO_INITDB_ROOT_PASSWORD=password
+export ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+export ME_CONFIG_MONGODB_ADMINPASSWORD=password
+```
+
+* run docker-compose up --build
+
+---
+
+## Sapper documentation
+
 The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
 
 ## Getting started
