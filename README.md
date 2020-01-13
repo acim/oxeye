@@ -1,5 +1,7 @@
 # Daisy - Sapper Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting
 
+[![GitHub](https://img.shields.io/github/license/acim/daisy)](LICENSE)
+
 <p align="center"><img src="daisy.jpg"></p>
 
 ## Dependencies
