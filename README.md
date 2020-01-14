@@ -15,15 +15,18 @@
 ## Set local development environment
 
 * install direnv, Docker and docker-compose
-* create file .envrc in the project root directory with the following contents:
+* change working directory to the project root
+* create file .envrc with the following contents:
 
 ``` bash
 export MONGO_INITDB_ROOT_USERNAME=admin
 export MONGO_INITDB_ROOT_PASSWORD=password
 export ME_CONFIG_MONGODB_ADMINUSERNAME=admin
 export ME_CONFIG_MONGODB_ADMINPASSWORD=password
+export MONGO_URI='mongodb://admin:password@mongo/daisy?authSource=admin&retryWrites=true&w=majority'
 ```
 
+* run direnv allow .
 * run docker-compose up --build
 
 ---
