@@ -29,6 +29,9 @@ export MONGO_URI='mongodb://admin:password@mongo/daisy?authSource=admin&retryWri
 * run direnv allow .
 * run docker-compose up --build
 
+Your Daisy application should be available at http://localhost:3000/ and if you need to check Mongo database by
+Mongo Express administration tool, it should be available at http://localhost:3001/.
+
 ---
 
 ## Sapper documentation
