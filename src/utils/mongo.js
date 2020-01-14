@@ -9,7 +9,7 @@ const db = async () => {
     useUnifiedTopology: true
   });
 
-  logger.info(`connected to mongo host: ${conn.connection.host}`);
+  logger().info(`connected to mongo host: ${conn.connection.host}`);
 };
 
 export default db;

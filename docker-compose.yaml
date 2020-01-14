@@ -28,6 +28,8 @@ services:
     depends_on:
       - mongo
     restart: always
+    environment:
+    - MONGO_URI
     volumes:
       - ./:/app
     ports:

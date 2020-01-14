@@ -17,6 +17,8 @@ const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
 dotenv.config();
 
+mongo();
+
 const app = express();
 
 app.use(
