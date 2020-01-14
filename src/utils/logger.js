@@ -1,22 +1,21 @@
 import * as winston from "winston";
-import dotenv from "dotenv";
 
-dotenv.config({ path: "./daisy.env" });
+export default () => {
+  const logger = winston.createLogger({
+    transports: [
+      new winston.transports.Console({
+        level: process.env.LOG_LEVEL || "warning",
+        handleExceptions: true
+      })
+    ],
+    exitOnError: false
+  });
 
-const logger = winston.createLogger({
-  transports: [
-    new winston.transports.Console({
-      level: process.env.LOG_LEVEL || "warning",
-      handleExceptions: true
-    })
-  ],
-  exitOnError: false
-});
+  logger.stream = {
+    write: function(message, encoding) {
+      logger.info(message);
+    }
+  };
 
-logger.stream = {
-  write: function(message, encoding) {
-    logger.info(message);
-  }
-};
-
-export default logger;
+  return logger;
+}
