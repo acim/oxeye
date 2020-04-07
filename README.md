@@ -1,10 +1,9 @@
-# Daisy - [Sapper](https://sapper.svelte.dev/) Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting
+# Oxeye - [Sapper](https://sapper.svelte.dev/) Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting
 
-[![GitHub](https://img.shields.io/github/license/acim/daisy)](LICENSE)
-[![Build Status](https://drone.ablab.de/api/badges/acim/daisy/status.svg)](https://drone.ablab.de/acim/daisy)
-![GitHub issues](https://img.shields.io/github/issues-raw/acim/daisy)
+[![GitHub](https://img.shields.io/github/license/acim/oxeye)](LICENSE)
+![GitHub issues](https://img.shields.io/github/issues-raw/acim/oxeye)
 
-<p align="center"><img src="daisy.jpg"></p>
+<p align="center"><img src="oxeye.jpg"></p>
 
 ## Dependencies
 
@@ -23,13 +22,13 @@ export MONGO_INITDB_ROOT_USERNAME=admin
 export MONGO_INITDB_ROOT_PASSWORD=password
 export ME_CONFIG_MONGODB_ADMINUSERNAME=admin
 export ME_CONFIG_MONGODB_ADMINPASSWORD=password
-export MONGO_URI='mongodb://admin:password@mongo/daisy?authSource=admin&retryWrites=true&w=majority'
+export MONGO_URI='mongodb://admin:password@mongo/oxeye?authSource=admin&retryWrites=true&w=majority'
 ```
 
 * run direnv allow .
 * run docker-compose up --build
 
-Your Daisy application should be available at http://localhost:3000/ and if you need to check Mongo database by
+Your Oxeye application should be available at http://localhost:3000/ and if you need to check Mongo database by
 Mongo Express administration tool, it should be available at http://localhost:3001/.
 
 ---

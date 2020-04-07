@@ -3,28 +3,28 @@ version: "3.7"
 services:
   mongo:
     image: mongo:4
-    container_name: daisy-mongo
+    container_name: oxeye-mongo
     restart: always
     environment:
-    - MONGO_INITDB_DATABASE=daisy
+    - MONGO_INITDB_DATABASE=oxeye
     - MONGO_INITDB_ROOT_USERNAME
     - MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - mongo:/data/db
   mongo-express:
     image: mongo-express
-    container_name: daisy-mongo-express
+    container_name: oxeye-mongo-express
     restart: always
     environment:
     - ME_CONFIG_MONGODB_ADMINUSERNAME
     - ME_CONFIG_MONGODB_ADMINPASSWORD
     ports:
     - 3001:8081
-  daisy:
+  oxeye:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: daisy
+    container_name: oxeye
     depends_on:
       - mongo
     restart: always
