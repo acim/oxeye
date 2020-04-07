@@ -41,3 +41,7 @@ app.use(
 app.listen(PORT, err => {
   if (err) logger.error(err);
 });
+
+process.on('unhandledRejection', error => {
+  logger.error(error.message);
+});
