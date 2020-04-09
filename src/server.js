@@ -5,19 +5,45 @@ import * as sapper from "@sapper/server";
 import dotenv from "dotenv";
 import logger from "./utils/logger";
 import morgan from "morgan";
-import cookieParser from "cookie-parser";
 import mongoSanitize from "express-mongo-sanitize";
 import helmet from "helmet";
 import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
 import hpp from "hpp";
 import mongo from "./utils/mongo";
+import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
 dotenv.config();
 
 mongo();
+
+const getUser = (req) => {
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies.token) {
+    token = req.cookies.token;
+  }
+
+  if (token) {
+    let decoded;
+    try {
+      decoded = jwt.verify(token, "4TvMZCZoBWfRrbK2e6xSIOoC1leN7pX9"); // FIXME: Get secret key from configuration
+    } catch (err) {
+      console.log(err);
+    }
+
+    if (decoded) {
+      return { username: decoded.username };
+    }
+  }
+};
 
 const app = express();
 
@@ -27,21 +53,25 @@ app.use(
   morgan("combined", { stream: logger().stream }),
   express.json(),
   cookieParser(),
+  (req, res, next) => {
+    req.user = getUser(req);
+    next();
+  },
   mongoSanitize(),
   helmet(),
   xss(),
   rateLimit({
     windowMs: 10 * 60 * 1000, // 10 mins
-    max: 100
+    max: 100,
   }),
   hpp(),
   sapper.middleware()
 );
 
-app.listen(PORT, err => {
+app.listen(PORT, (err) => {
   if (err) logger.error(err);
 });
 
-process.on('unhandledRejection', error => {
+process.on("unhandledRejection", (error) => {
   logger.error(error.message);
 });
