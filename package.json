@@ -1,7 +1,7 @@
 {
   "name": "oxeye",
   "description": "Sapper Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
