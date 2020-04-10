@@ -4,3 +4,6 @@ Dockerfile
 LICENSE
 README.md
 docker-compose.yaml
+__sapper__
+node_modules
+src/node_modules

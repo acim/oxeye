@@ -15,27 +15,26 @@ export async function post(req, res) {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     const isValidPassword = await bcrypt.compare(password, user.password);
-    if (isValidPassword) {
-      const token = generateToken(auth.username);
-      res
-        .cookie("token", token, {
-          expires: new Date(Date.now() + 60 * 60 * 1000),
-          httpOnly: true,
-        })
-        .end(
-          JSON.stringify({
-            user: {
-              username,
-              token: token,
-            },
-          })
-        );
-      return;
+    if (!validPassword) {
+      throw new Error();
     }
-    throw "Invalid credentials";
+    const token = generateToken(auth.username);
+    res
+      .cookie("token", token, {
+        expires: new Date(Date.now() + 60 * 60 * 1000),
+        httpOnly: true,
+      })
+      .end(
+        JSON.stringify({
+          user: {
+            username,
+            token: token,
+          },
+        })
+      );
   } catch (err) {
     res.status(401).json({
-      error: "Wrong username or password",
+      error: "Invalid credentials",
     });
   }
 }
