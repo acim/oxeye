@@ -27,6 +27,22 @@
   }
 </script>
 
+<style>
+  fieldset {
+    border: none;
+  }
+  input {
+    display: block;
+  }
+  button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+  }
+</style>
+
 <svelte:head>
   <title>Login</title>
 </svelte:head>
@@ -38,30 +54,11 @@
 
     <form on:submit|preventDefault={submit}>
       <fieldset>
-        <label for="username">
-          <b>Username</b>
-        </label>
-        <input
-          class="input"
-          type="text"
-          placeholder="Username"
-          bind:value={username}
-          required />
-        <label for="password">
-          <b>Password</b>
-        </label>
-        <input
-          class="input"
-          type="password"
-          placeholder="Password"
-          bind:value={password}
-          required />
-        <button
-          class="button is-link"
-          type="submit"
-          disabled={!username || !password}>
-          Login
-        </button>
+        <label for="username">Username</label>
+        <input class="input" type="text" bind:value={username} required />
+        <label for="password">Password</label>
+        <input class="input" type="password" bind:value={password} required />
+        <button type="submit" disabled={!username || !password}>Login</button>
       </fieldset>
     </form>
 

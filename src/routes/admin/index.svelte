@@ -30,13 +30,17 @@
   let loading;
 </script>
 
-<button
-  type="submit"
-  class="button is-primary is-small"
-  class:is-loading={loading}
-  on:click={fetchData}>
-  Get config
-</button>
+<style>
+  button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+  }
+</style>
+
+<button type="submit" on:click={fetchData}>Get config</button>
 
 {#if process.browser}
   {#await fetchData() then data}Your username is: {data.username}{/await}
