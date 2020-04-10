@@ -5,17 +5,17 @@ export default () => {
     transports: [
       new winston.transports.Console({
         level: process.env.LOG_LEVEL || "warning",
-        handleExceptions: true
-      })
+        handleExceptions: true,
+      }),
     ],
-    exitOnError: false
+    exitOnError: false,
   });
 
   logger.stream = {
-    write: function(message, encoding) {
+    write: function (message, encoding) {
       logger.info(message);
-    }
+    },
   };
 
-  return logger;
-}
+  return logger();
+};

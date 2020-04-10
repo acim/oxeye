@@ -50,7 +50,7 @@ const app = express();
 app.use(
   compression({ threshold: 0 }),
   sirv("static", { dev }),
-  morgan("combined", { stream: logger().stream }),
+  morgan("combined", { stream: logger.stream }),
   express.json(),
   cookieParser(),
   (req, res, next) => {
