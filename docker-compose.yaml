@@ -35,5 +35,6 @@ services:
       - ./:/app
     ports:
       - 3000:3000
+      - 10000:10000
 volumes:
   mongo:

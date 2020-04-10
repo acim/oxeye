@@ -14,7 +14,8 @@ export async function post(req, res) {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const validPassword = await bcrypt.compare(password, user.password);
+    console.log(validPassword);
     if (!validPassword) {
       throw new Error();
     }

@@ -4,6 +4,7 @@
 
   let username = "";
   let password = "";
+  let error = "";
   $: valid = username && password;
 
   async function submit() {
@@ -16,14 +17,14 @@
         body: JSON.stringify({ username, password })
       });
       const decode = await response.json();
-      // TODO handle network errors
-      // errors = response.errors;
-      if (decode.user) {
-        $user = decode.user;
-        goto("admin");
+      if (decode.error) {
+        error = decode.error;
+        return;
       }
-    } catch (e) {
-      console.log(e);
+      $user = decode.user;
+      goto("admin");
+    } catch (err) {
+      error = err;
     }
   }
 </script>
@@ -67,6 +68,6 @@
         <button type="submit" disabled={!valid}>Login</button>
       </fieldset>
     </form>
-
+    {#if error}Error: {error}{/if}
   </div>
 </section>
