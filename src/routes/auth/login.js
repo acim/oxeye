@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import User from "../../models/User";
 
 const generateToken = (username) => {
   return jwt.sign({ username }, process.env.JWT_SECRET_KEY, {
@@ -6,30 +8,34 @@ const generateToken = (username) => {
   });
 };
 
-export function post(req, res) {
-  const auth = req.body;
+export async function post(req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  //   TODO: Handle authentication properly
-  if (auth.username === "admin" && auth.password === "123") {
-    const token = generateToken(auth.username);
-    res
-      .cookie("token", token, {
-        expires: new Date(Date.now() + 60 * 60 * 1000),
-        httpOnly: true,
-      })
-      .end(
-        JSON.stringify({
-          user: {
-            username: auth.username,
-            token: token,
-          },
+  try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (isValidPassword) {
+      const token = generateToken(auth.username);
+      res
+        .cookie("token", token, {
+          expires: new Date(Date.now() + 60 * 60 * 1000),
+          httpOnly: true,
         })
-      );
-    return;
+        .end(
+          JSON.stringify({
+            user: {
+              username,
+              token: token,
+            },
+          })
+        );
+      return;
+    }
+    throw "Invalid credentials";
+  } catch (err) {
+    res.status(401).json({
+      error: "Wrong username or password",
+    });
   }
-
-  res.status(401).json({
-    error: "Wrong username or password",
-  });
 }
