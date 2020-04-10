@@ -14,8 +14,8 @@
       });
       $user = null;
       goto(".");
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   }
 </script>
@@ -97,7 +97,7 @@
 
     {#if $user}
       <li>
-        <a href="javascript:void();" on:click={logout}>logout</a>
+        <a href="." on:click={logout}>logout</a>
       </li>
     {/if}
   </ul>
