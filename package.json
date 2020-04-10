@@ -1,7 +1,12 @@
 {
   "name": "oxeye",
   "description": "Sapper Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting",
-  "version": "0.0.6",
+  "version": "0.0.7",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:acim/oxeye.git"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
