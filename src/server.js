@@ -13,6 +13,8 @@ import hpp from "hpp";
 import mongo from "./utils/mongo";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+// import bcrypt from "bcrypt";
+// import User from "./models/User";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -69,9 +71,28 @@ app.use(
 );
 
 app.listen(PORT, (err) => {
-  if (err) logger.error(err);
+  if (err) logger.error(err.message);
 });
 
-process.on("unhandledRejection", (error) => {
-  logger.error(error.message);
+process.on("unhandledRejection", (err) => {
+  logger.error(err.message);
 });
+
+// const hash = async () => {
+//   const plainPwd = "123";
+//   const pwd = await bcrypt.hash(a, 10);
+//   const u = new User({
+//     firstName: "Boban",
+//     lastName: "Acimovic",
+//     username: "acim",
+//     email: "boban.acimovic@gmail.com",
+//     password: pwd,
+//   });
+//   await u.save();
+// };
+
+// try {
+//   hash();
+// } catch (err) {
+//   logger.error(err);
+// }

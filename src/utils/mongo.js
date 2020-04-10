@@ -6,10 +6,10 @@ const db = async () => {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   });
 
-  logger().info(`connected to mongo host: ${conn.connection.host}`);
+  logger.info(`connected to mongo host: ${conn.connection.host}`);
 };
 
 export default db;

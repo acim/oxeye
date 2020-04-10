@@ -11,6 +11,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - mongo:/data/db
+    logging:
+      driver: none
   mongo-express:
     image: mongo-express
     container_name: oxeye-mongo-express
@@ -20,6 +22,8 @@ services:
       - ME_CONFIG_MONGODB_ADMINPASSWORD
     ports:
       - 3001:8081
+    logging:
+      driver: none
   oxeye:
     build:
       context: .

@@ -15,11 +15,10 @@ export async function post(req, res) {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     const validPassword = await bcrypt.compare(password, user.password);
-    console.log(validPassword);
     if (!validPassword) {
       throw new Error();
     }
-    const token = generateToken(auth.username);
+    const token = generateToken(username);
     res
       .cookie("token", token, {
         expires: new Date(Date.now() + 60 * 60 * 1000),
