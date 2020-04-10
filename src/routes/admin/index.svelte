@@ -10,7 +10,6 @@
   });
 
   async function fetchData() {
-    loading = true;
     const res = await fetch("admin/config", {
       headers: {
         "Content-Type": "application/json",
@@ -18,29 +17,12 @@
       }
     });
     const data = await res.json();
-    loading = false;
-
     if (res.ok) {
       return data;
-    } else {
-      throw new Error(data);
     }
+    throw new Error(data);
   }
-
-  let loading;
 </script>
-
-<style>
-  button {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
-  }
-</style>
-
-<button type="submit" on:click={fetchData}>Get config</button>
 
 {#if process.browser}
   {#await fetchData() then data}Your username is: {data.username}{/await}
