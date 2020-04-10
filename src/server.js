@@ -34,7 +34,7 @@ const getUser = (req) => {
   if (token) {
     let decoded;
     try {
-      decoded = jwt.verify(token, "4TvMZCZoBWfRrbK2e6xSIOoC1leN7pX9"); // FIXME: Get secret key from configuration
+      decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     } catch (err) {
       console.log(err);
     }

@@ -23,6 +23,7 @@ export MONGO_INITDB_ROOT_PASSWORD=password
 export ME_CONFIG_MONGODB_ADMINUSERNAME=admin
 export ME_CONFIG_MONGODB_ADMINPASSWORD=password
 export MONGO_URI='mongodb://admin:password@mongo/oxeye?authSource=admin&retryWrites=true&w=majority'
+export JWT_SECRET_KEY=your-super-secret-key
 ```
 
 - run direnv allow .

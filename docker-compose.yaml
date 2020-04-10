@@ -6,9 +6,9 @@ services:
     container_name: oxeye-mongo
     restart: always
     environment:
-    - MONGO_INITDB_DATABASE=oxeye
-    - MONGO_INITDB_ROOT_USERNAME
-    - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE=oxeye
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
     volumes:
       - mongo:/data/db
   mongo-express:
@@ -16,10 +16,10 @@ services:
     container_name: oxeye-mongo-express
     restart: always
     environment:
-    - ME_CONFIG_MONGODB_ADMINUSERNAME
-    - ME_CONFIG_MONGODB_ADMINPASSWORD
+      - ME_CONFIG_MONGODB_ADMINUSERNAME
+      - ME_CONFIG_MONGODB_ADMINPASSWORD
     ports:
-    - 3001:8081
+      - 3001:8081
   oxeye:
     build:
       context: .
@@ -29,10 +29,11 @@ services:
       - mongo
     restart: always
     environment:
-    - MONGO_URI
+      - MONGO_URI
+      - JWT_SECRET_KEY
     volumes:
       - ./:/app
     ports:
-    - 3000:3000
+      - 3000:3000
 volumes:
   mongo:

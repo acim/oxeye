@@ -1,8 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const generateToken = (username) => {
-  return jwt.sign({ username }, "4TvMZCZoBWfRrbK2e6xSIOoC1leN7pX9", {
-    // FIXME: Get secret key from configuration
+  return jwt.sign({ username }, process.env.JWT_SECRET_KEY, {
     expiresIn: "1h",
   });
 };
