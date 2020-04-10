@@ -13,5 +13,5 @@ function useLocalStorage(store) {
 
 export const user = writable();
 if (process.browser) {
-  useLocalStorage(user, "sapper"); // FIXME: Do not hardcode storage key
+  useLocalStorage(user, process.env.LOCAL_STORAGE_KEY);
 }
