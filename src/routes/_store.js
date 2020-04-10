@@ -13,5 +13,5 @@ function useLocalStorage(store) {
 
 export const user = writable();
 if (process.browser) {
-  useLocalStorage(user, process.env.LOCAL_STORAGE_KEY);
+  useLocalStorage(user, process.env.SAPPER_APP_LOCAL_STORAGE_KEY);
 }

@@ -4,6 +4,7 @@
 
   let username = "";
   let password = "";
+  $: valid = username && password;
 
   async function submit() {
     try {
@@ -57,8 +58,13 @@
         <label for="username">Username</label>
         <input class="input" type="text" bind:value={username} required />
         <label for="password">Password</label>
-        <input class="input" type="password" bind:value={password} required />
-        <button type="submit" disabled={!username || !password}>Login</button>
+        <input
+          class="input"
+          type="password"
+          bind:value={password}
+          autocomplete="on"
+          required />
+        <button type="submit" disabled={!valid}>Login</button>
       </fieldset>
     </form>
 
