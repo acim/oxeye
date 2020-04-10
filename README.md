@@ -7,17 +7,17 @@
 
 ## Dependencies
 
-* [MongoDB](https://www.mongodb.com/)
-* [Express](https://expressjs.com/)
-* [Mongoose](https://mongoosejs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Express](https://expressjs.com/)
+- [Mongoose](https://mongoosejs.com/)
 
 ## Set local development environment
 
-* install direnv, Docker and docker-compose
-* change working directory to the project root
-* create file .envrc with the following contents:
+- install direnv, Docker and docker-compose
+- change working directory to the project root
+- create file .envrc with the following contents:
 
-``` bash
+```bash
 export MONGO_INITDB_ROOT_USERNAME=admin
 export MONGO_INITDB_ROOT_PASSWORD=password
 export ME_CONFIG_MONGODB_ADMINUSERNAME=admin
@@ -25,8 +25,8 @@ export ME_CONFIG_MONGODB_ADMINPASSWORD=password
 export MONGO_URI='mongodb://admin:password@mongo/oxeye?authSource=admin&retryWrites=true&w=majority'
 ```
 
-* run direnv allow .
-* run docker-compose up --build
+- run direnv allow .
+- run docker-compose up --build
 
 Your Oxeye application should be available at http://localhost:3000/ and if you need to check Mongo database by
 Mongo Express administration tool, it should be available at http://localhost:3001/.
@@ -80,15 +80,15 @@ The [src](src) directory contains the entry points for your app — `client.js`,
 
 This is the heart of your Sapper app. There are two kinds of routes — _pages_, and _server routes_.
 
-**Pages** are Svelte components written in `.svelte` files. When a user first visits the application, they will be served a server-rendered version of the route in question, plus some JavaScript that 'hydrates' the page and initializes a client-side router. From that point forward, navigating to other pages is handled entirely on the client for a fast, app-like feel. (Sapper will preload and cache the code for these subsequent pages, so that navigation is instantaneous.)
+**Pages** are Svelte components written in `.svelte` files. When a user first visits the application, they will be served a server-rendered version of the route in question, plus some JavaScript that 'hydrates' the page and initialises a client-side router. From that point forward, navigating to other pages is handled entirely on the client for a fast, app-like feel. (Sapper will preload and cache the code for these subsequent pages, so that navigation is instantaneous.)
 
 **Server routes** are modules written in `.js` files, that export functions corresponding to HTTP methods. Each function receives Express `request` and `response` objects as arguments, plus a `next` function. This is useful for creating a JSON API, for example.
 
 There are three simple rules for naming the files that define your routes:
 
-* A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
-* The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
-* Files and directories with a leading underscore do _not_ create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would _not_ create a `/_helpers/datetime` route
+- A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
+- The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
+- Files and directories with a leading underscore do _not_ create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would _not_ create a `/_helpers/datetime` route
 
 ### static
 
@@ -110,12 +110,14 @@ Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as 
 
 To start a production version of your app, run `npm run build && npm start`. This will disable live reloading, and activate the appropriate bundler plugins.
 
-You can deploy your application to any environment that supports Node 8 or above. As an example, to deploy to [Now](https://zeit.co/now), run these commands:
+You can deploy your application to any environment that supports Node 10 or above. As an example, to deploy to [ZEIT Now](https://zeit.co/now) when using `sapper export`, run these commands:
 
 ```bash
 npm install -g now
 now
 ```
+
+If your app can't be exported to a static site, you can use the [now-sapper](https://github.com/thgh/now-sapper) builder. You can find instructions on how to do so in its [README](https://github.com/thgh/now-sapper#basic-usage).
 
 ## Using external components
 
