@@ -21,7 +21,7 @@
         error = decode.error;
         return;
       }
-      $session.user = decode.user;
+      $session = decode;
       goto("admin");
     } catch (err) {
       error = err;

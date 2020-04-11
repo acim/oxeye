@@ -13,7 +13,7 @@
           "Content-Type": "application/json"
         }
       });
-      $session.user = null;
+      $session = null;
       goto(".");
     } catch (err) {
       console.log(err);
@@ -96,7 +96,7 @@
       </a>
     </li>
 
-    {#if $session.user}
+    {#if $session && $session.user}
       <li>
         <a href="." on:click={logout}>logout</a>
       </li>

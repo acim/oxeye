@@ -1,6 +1,6 @@
 <script context="module">
-  export async function preload(page, { user }) {
-    if (!user) {
+  export async function preload(page, session) {
+    if (!session || !session.user) {
       this.redirect(302, "login");
     }
   }
@@ -20,17 +20,21 @@
   // });
 
   async function fetchData() {
-    const res = await fetch("admin/config", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${$session.user.token}`
+    try {
+      const res = await fetch("admin/config", {
+        headers: {
+          "Content-Type": "application/json"
+          // Authorization: `Bearer ${session.user.token}`
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return data;
       }
-    });
-    const data = await res.json();
-    if (res.ok) {
-      return data;
+      throw new Error(data);
+    } catch (err) {
+      console.log(err);
     }
-    throw new Error(data);
   }
 </script>
 

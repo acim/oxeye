@@ -1,13 +1,13 @@
 // import { writable } from "svelte/store";
 
-// function useLocalStorage(store) {
-//   const json = localStorage.getItem("user");
+// function useLocalStorage(store, key) {
+//   const json = localStorage.getItem(key);
 //   if (json && json !== "undefined") {
 //     store.set(JSON.parse(json));
 //   }
 
 //   store.subscribe((value) =>
-//     localStorage.setItem("user", JSON.stringify(value))
+//     localStorage.setItem(key, JSON.stringify(value))
 //   );
 // }
 
