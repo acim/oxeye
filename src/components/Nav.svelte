@@ -1,7 +1,8 @@
 <script>
   import { goto } from "@sapper/app";
-  import { user } from "../routes/_store.js";
+  import { stores } from "@sapper/app";
 
+  const { session } = stores();
   export let segment;
 
   async function logout() {
@@ -12,7 +13,7 @@
           "Content-Type": "application/json"
         }
       });
-      $user = null;
+      $session.user = null;
       goto(".");
     } catch (err) {
       console.log(err);
@@ -95,7 +96,7 @@
       </a>
     </li>
 
-    {#if $user}
+    {#if $session.user}
       <li>
         <a href="." on:click={logout}>logout</a>
       </li>

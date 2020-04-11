@@ -1,6 +1,5 @@
 <script context="module">
   export async function preload(page, { user }) {
-    console.log("USER: ", user);
     if (!user) {
       this.redirect(302, "login");
     }
@@ -10,7 +9,9 @@
 <script>
   import { goto } from "@sapper/app";
   import { onMount } from "svelte";
-  import { user } from "../_store.js";
+  import { stores } from "@sapper/app";
+
+  const { session } = stores();
 
   // onMount(() => {
   //   if (!$user) {
@@ -22,7 +23,7 @@
     const res = await fetch("admin/config", {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${$user.token}`
+        Authorization: `Bearer ${$session.user.token}`
       }
     });
     const data = await res.json();
