@@ -19,36 +19,11 @@
 
 <script>
   import { goto } from "@sapper/app";
-  import { onMount } from "svelte";
   import { stores } from "@sapper/app";
 
   export let data;
 
   const { session } = stores();
-
-  // onMount(() => {
-  //   if (!$user) {
-  //     goto("login");
-  //   }
-  // });
-
-  // async function fetchData() {
-  //   try {
-  //     const res = await fetch("admin/config", {
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //         // Authorization: `Bearer ${session.user.token}`
-  //       }
-  //     });
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       return data;
-  //     }
-  //     throw new Error(data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 </script>
 
 {#if data}
