@@ -1,13 +1,22 @@
+<script context="module">
+  export async function preload(page, { user }) {
+    console.log("USER: ", user);
+    if (!user) {
+      this.redirect(302, "login");
+    }
+  }
+</script>
+
 <script>
   import { goto } from "@sapper/app";
   import { onMount } from "svelte";
   import { user } from "../_store.js";
 
-  onMount(() => {
-    if (!$user) {
-      goto("login");
-    }
-  });
+  // onMount(() => {
+  //   if (!$user) {
+  //     goto("login");
+  //   }
+  // });
 
   async function fetchData() {
     const res = await fetch("admin/config", {
@@ -24,9 +33,9 @@
   }
 </script>
 
-{#if process.browser}
-  {#await fetchData() then data}Your username is: {data.username}{/await}
-  <hr />
-  This is fetching resource /admin/config. Try to logout and to reach this
-  resource by typing the url in your browser.
-{/if}
+<!-- {#if process.browser} -->
+{#await fetchData() then data}Your username is: {data.username}{/await}
+<hr />
+This is fetching resource /admin/config. Try to logout and to reach this
+resource by typing the url in your browser.
+<!-- {/if} -->

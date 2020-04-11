@@ -67,7 +67,11 @@ app.use(
     max: 100,
   }),
   hpp(),
-  sapper.middleware()
+  sapper.middleware({
+    session: (req, res) => ({
+      user: req.user,
+    }),
+  })
 );
 
 app.listen(PORT, (err) => {

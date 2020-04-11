@@ -1,7 +1,8 @@
 <script>
-  import { goto } from "@sapper/app";
+  import { goto, stores } from "@sapper/app";
   import { user } from "./_store.js";
 
+  const { session } = stores();
   let username = "";
   let password = "";
   let error = "";
@@ -22,6 +23,7 @@
         return;
       }
       $user = decode.user;
+      $session.user = decode.user;
       goto("admin");
     } catch (err) {
       error = err;
