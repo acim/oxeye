@@ -2,22 +2,17 @@
   export async function preload(page, session) {
     if (!session || !session.user) {
       this.redirect(302, "login");
+      return;
     }
 
-    try {
-      const res = await this.fetch("admin/config", {
-        headers: {
-          "Content-Type": "application/json"
-          // Authorization: `Bearer ${session.user.token}`
-        }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        return { data };
+    const res = await this.fetch("admin/config", {
+      headers: {
+        "Content-Type": "application/json"
       }
-      throw new Error(res);
-    } catch (err) {
-      console.log(err);
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return { data };
     }
   }
 </script>
