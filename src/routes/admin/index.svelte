@@ -3,6 +3,22 @@
     if (!session || !session.user) {
       this.redirect(302, "login");
     }
+
+    try {
+      const res = await this.fetch("admin/config", {
+        headers: {
+          "Content-Type": "application/json"
+          // Authorization: `Bearer ${session.user.token}`
+        }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return { data };
+      }
+      throw new Error(res);
+    } catch (err) {
+      console.log(err);
+    }
   }
 </script>
 
@@ -10,6 +26,8 @@
   import { goto } from "@sapper/app";
   import { onMount } from "svelte";
   import { stores } from "@sapper/app";
+
+  export let data;
 
   const { session } = stores();
 
@@ -19,28 +37,28 @@
   //   }
   // });
 
-  async function fetchData() {
-    try {
-      const res = await fetch("admin/config", {
-        headers: {
-          "Content-Type": "application/json"
-          // Authorization: `Bearer ${session.user.token}`
-        }
-      });
-      if (res.ok) {
-        const data = await res.json();
-        return data;
-      }
-      throw new Error(data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function fetchData() {
+  //   try {
+  //     const res = await fetch("admin/config", {
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //         // Authorization: `Bearer ${session.user.token}`
+  //       }
+  //     });
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       return data;
+  //     }
+  //     throw new Error(data);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 </script>
 
-<!-- {#if process.browser} -->
-{#await fetchData() then data}Your username is: {data.username}{/await}
-<hr />
+{#if data}
+  Your username is: {data.username}
+  <hr />
+{/if}
 This is fetching resource /admin/config. Try to logout and to reach this
 resource by typing the url in your browser.
-<!-- {/if} -->
