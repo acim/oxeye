@@ -28,6 +28,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - UID
+        - GID
     container_name: oxeye
     depends_on:
       - mongo
