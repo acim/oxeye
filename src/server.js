@@ -98,7 +98,7 @@ process.on("unhandledRejection", (err) => {
 
 // const hash = async () => {
 //   const plainPwd = "123";
-//   const pwd = await bcrypt.hash(a, 10);
+//   const pwd = await bcrypt.hash(plainPwd, 10);
 //   const u = new User({
 //     firstName: "Boban",
 //     lastName: "Acimovic",
@@ -110,6 +110,7 @@ process.on("unhandledRejection", (err) => {
 // };
 
 // try {
+//   logger.info("creating admin user")
 //   hash();
 // } catch (err) {
 //   logger.error(err);
