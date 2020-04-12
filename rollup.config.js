@@ -104,6 +104,8 @@ export default {
       replace({
         "process.browser": true,
         "process.env.NODE_ENV": JSON.stringify(mode),
+        "process.env.SAPPER_TIMESTAMP":
+          process.env.SAPPER_TIMESTAMP || Date.now(),
       }),
       commonjs(),
       !dev && terser(),
