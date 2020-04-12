@@ -4,7 +4,7 @@ WORKDIR /app
 COPY . .
 
 RUN npm ci
-RUN npm run build
+RUN SAPPER_TIMESTAMP=$(date +%s%3N) npm run build
 
 FROM mhart/alpine-node:12 AS prod
 
