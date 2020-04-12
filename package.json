@@ -1,7 +1,7 @@
 {
   "name": "oxeye",
   "description": "Sapper Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:acim/oxeye.git"
@@ -31,6 +31,7 @@
     "mongoose": "^5.9.7",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
+    "randomstring": "^1.1.5",
     "sirv": "^0.4.2",
     "winston": "^3.2.1",
     "xss-clean": "^0.1.1"

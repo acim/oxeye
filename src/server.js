@@ -14,8 +14,8 @@ import hpp from "hpp";
 import mongo from "./utils/mongo";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
-// import bcrypt from "bcrypt";
-// import User from "./models/User";
+import bcrypt from "bcrypt";
+import User from "./models/User";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -57,7 +57,7 @@ app.use(
   express.json(),
   cookieParser(),
   (req, res, next) => {
-    req.session = { user: getUser(req) }
+    req.session = { user: getUser(req) };
     next();
   },
   mongoSanitize(),
@@ -96,22 +96,28 @@ process.on("unhandledRejection", (err) => {
   logger.error(err.message);
 });
 
-// const hash = async () => {
-//   const plainPwd = "123";
-//   const pwd = await bcrypt.hash(plainPwd, 10);
-//   const u = new User({
-//     firstName: "Boban",
-//     lastName: "Acimovic",
-//     username: "acim",
-//     email: "boban.acimovic@gmail.com",
-//     password: pwd,
-//   });
-//   await u.save();
-// };
+const initAdmin = async () => {
+  try {
+    const countUsers = await User.countDocuments({});
+    if (countUsers) {
+      return;
+    }
 
-// try {
-//   logger.info("creating admin user")
-//   hash();
-// } catch (err) {
-//   logger.error(err);
-// }
+    const { generate } = await import("randomstring");
+    const plainPwd = generate();
+    const hashPwd = await bcrypt.hash(plainPwd, 10);
+    logger.info(`creating admin user with password '${plainPwd}'`);
+    const u = new User({
+      firstName: "John",
+      lastName: "Doe",
+      username: "admin",
+      email: "admin@test.com",
+      password: hashPwd,
+    });
+    await u.save();
+  } catch (err) {
+    logger.error(err.message);
+  }
+};
+
+initAdmin();

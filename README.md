@@ -33,6 +33,8 @@ export JWT_SECRET_KEY=your-super-secret-key
 Your Oxeye application should be available at http://localhost:3000/ and if you need to check Mongo database by
 Mongo Express administration tool, it should be available at http://localhost:3001/.
 
+If there is no user in the database, Oxeye is going to create admin user and you can see the password in the output.
+
 ---
 
 ## [Sapper documentation](https://github.com/sveltejs/sapper/blob/master/README.md)
