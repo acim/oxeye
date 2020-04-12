@@ -14,7 +14,7 @@ import hpp from "hpp";
 import mongo from "./utils/mongo";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
-import initAdmin from "./utils/init-admin";
+import seed from "./utils/seed";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -95,4 +95,4 @@ process.on("unhandledRejection", (err) => {
   logger.error(err.message);
 });
 
-initAdmin();
+seed();

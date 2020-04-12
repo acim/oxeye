@@ -5,9 +5,8 @@ export default mongoose.model(
   mongoose.Schema({
     name: {
       type: String,
-    },
-    description: {
-      type: String,
+      required: true,
+      unique: true,
     },
   })
 );
