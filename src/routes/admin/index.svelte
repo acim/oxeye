@@ -5,7 +5,7 @@
       return;
     }
 
-    const res = await this.fetch("admin/config", {
+    const res = await this.fetch("admin/config.json", {
       headers: {
         "Content-Type": "application/json"
       }

@@ -9,7 +9,7 @@
 
   async function submit() {
     try {
-      const response = await fetch("auth/login", {
+      const response = await fetch("auth/login.json", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

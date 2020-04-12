@@ -5,8 +5,8 @@ export function get(req, res) {
     res.status(401).json({
       error: "Unauthorized",
     });
+    return;
   }
 
-  res.end(JSON.stringify(req.user));
-  return;
+  res.end(JSON.stringify(req.session.user));
 }

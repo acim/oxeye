@@ -7,7 +7,7 @@
 
   async function logout() {
     try {
-      await fetch("auth/logout", {
+      await fetch("auth/logout.json", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json"
