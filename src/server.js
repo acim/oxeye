@@ -57,7 +57,7 @@ app.use(
   express.json(),
   cookieParser(),
   (req, res, next) => {
-    req.user = getUser(req);
+    req.session.user = getUser(req);
     next();
   },
   mongoSanitize(),
@@ -82,9 +82,7 @@ app.use(
   }),
   hpp(),
   sapper.middleware({
-    session: (req, res) => ({
-      user: req.user,
-    }),
+    session: (req, res) => req.session,
   })
 );
 

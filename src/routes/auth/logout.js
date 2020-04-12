@@ -1,5 +1,5 @@
 export function del(req, res) {
-  delete req.user;
+  delete req.session;
   res.setHeader("Content-Type", "application/json");
   res
     .cookie("token", null, {
