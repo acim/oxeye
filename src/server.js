@@ -14,8 +14,7 @@ import hpp from "hpp";
 import mongo from "./utils/mongo";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
-import User from "./models/User";
+import initAdmin from "./utils/init-admin";
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === "development";
@@ -95,29 +94,5 @@ app.listen(PORT, (err) => {
 process.on("unhandledRejection", (err) => {
   logger.error(err.message);
 });
-
-const initAdmin = async () => {
-  try {
-    const countUsers = await User.countDocuments({});
-    if (countUsers) {
-      return;
-    }
-
-    const { generate } = await import("randomstring");
-    const plainPwd = generate();
-    const hashPwd = await bcrypt.hash(plainPwd, 10);
-    logger.info(`creating admin user with password '${plainPwd}'`);
-    const u = new User({
-      firstName: "John",
-      lastName: "Doe",
-      username: "admin",
-      email: "admin@test.com",
-      password: hashPwd,
-    });
-    await u.save();
-  } catch (err) {
-    logger.error(err.message);
-  }
-};
 
 initAdmin();
