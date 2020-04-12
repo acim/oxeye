@@ -27,7 +27,7 @@ services:
   oxeye:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: dev/Dockerfile
       args:
         - UID
         - GID

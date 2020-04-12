@@ -12,7 +12,7 @@ export default async () => {
           name: "owner",
         },
         {
-          name: "admin",
+          name: "administrator",
         },
         {
           name: "editor",
@@ -24,7 +24,7 @@ export default async () => {
           name: "contributor",
         },
         {
-          name: "contributor",
+          name: "subscriber",
         }
       );
     }
@@ -40,7 +40,7 @@ export default async () => {
     const plainPwd = generate();
     const hashPwd = await bcrypt.hash(plainPwd, 10);
     logger.info(`creating admin user with password '${plainPwd}'`);
-    await new User.create({
+    await User.create({
       firstName: "John",
       lastName: "Doe",
       username: "admin",
