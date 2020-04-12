@@ -35,6 +35,8 @@ Mongo Express administration tool, it should be available at http://localhost:30
 
 If there is no user in the database, Oxeye is going to create admin user and you can see the password in the output.
 
+## [Demo](https://oxeye.ablab.io/)
+
 ---
 
 ## [Sapper documentation](https://github.com/sveltejs/sapper/blob/master/README.md)

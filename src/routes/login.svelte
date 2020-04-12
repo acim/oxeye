@@ -1,11 +1,13 @@
 <script>
   import { goto, stores } from "@sapper/app";
+  import { onMount } from "svelte";
 
   const { session } = stores();
   let username = "";
   let password = "";
   let error = "";
   $: valid = username && password;
+  let usernameElement;
 
   async function submit() {
     try {
@@ -27,6 +29,8 @@
       error = err;
     }
   }
+
+  onMount(() => usernameElement.focus());
 </script>
 
 <style>
@@ -57,7 +61,12 @@
     <form on:submit|preventDefault={submit}>
       <fieldset>
         <label for="username">Username</label>
-        <input class="input" type="text" bind:value={username} required />
+        <input
+          class="input"
+          type="text"
+          bind:this={usernameElement}
+          bind:value={username}
+          required />
         <label for="password">Password</label>
         <input
           class="input"
