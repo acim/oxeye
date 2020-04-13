@@ -2,7 +2,7 @@
   export async function preload(page, session) {
     try {
       const response = await this.fetch(
-        `https://${page.host}/auth/activate.json?token=${page.query.token}`,
+        `${process.env.SAPPER_APP_BASE_URL}/auth/activate.json?token=${page.query.token}`,
         {
           method: "GET",
           headers: {
@@ -14,12 +14,7 @@
         return { data: response.error };
       }
 
-      const decode = await response.json();
-      if (decode.error) {
-        return { data: decode.error };
-      }
-
-      return { data: decode };
+      return { data: "account activated, you can login now" };
     } catch (err) {
       return { data: err.message };
     }
@@ -30,4 +25,4 @@
   export let data;
 </script>
 
-{JSON.stringify(data)}
+<section>{data}</section>
