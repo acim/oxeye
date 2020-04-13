@@ -25,6 +25,8 @@ export ME_CONFIG_MONGODB_ADMINUSERNAME=admin
 export ME_CONFIG_MONGODB_ADMINPASSWORD=password
 export MONGO_URI='mongodb://admin:password@mongo/oxeye?authSource=admin&retryWrites=true&w=majority'
 export JWT_SECRET_KEY=your-super-secret-key
+export MAILGUN_API_KEY=some-mailgun.key
+export MAILGUN_DOMAIN=your-mailgun-domain
 ```
 
 - run direnv allow .
