@@ -1,7 +1,12 @@
-<script>
-  import { stores } from "@sapper/app";
-
-  const { page, session } = stores();
+<script context="module">
+  export async function preload(page, session) {
+    const data = { page, session };
+    return { data };
+  }
 </script>
 
-{JSON.stringify(page)} {JSON.stringify(session)}
+<script>
+  export let data;
+</script>
+
+{JSON.stringify(data)}

@@ -18,12 +18,7 @@
 </script>
 
 <script>
-  import { goto } from "@sapper/app";
-  import { stores } from "@sapper/app";
-
   export let data;
-
-  const { session } = stores();
 </script>
 
 {#if data}
