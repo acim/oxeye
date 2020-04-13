@@ -71,12 +71,13 @@ app.use(
   })
 );
 
-app.listen(PORT, (err) => {
+const server = app.listen(PORT, (err) => {
   if (err) logger.error(err.message);
 });
 
-process.on("unhandledRejection", (err) => {
+process.on("unhandledRejection", (err, promise) => {
   logger.error(err.message);
+  server.close(() => process.exit(1));
 });
 
 seed();
