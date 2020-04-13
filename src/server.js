@@ -6,7 +6,6 @@ import dotenv from "dotenv";
 import logger from "./utils/logger";
 import morgan from "morgan";
 import mongoSanitize from "express-mongo-sanitize";
-// import uuidv4 from 'uuid/v4';
 import helmet from "helmet";
 import xss from "xss-clean";
 import rateLimit from "express-rate-limit";
@@ -60,21 +59,6 @@ app.use(
     next();
   },
   mongoSanitize(),
-  // Commented out because of https://github.com/sveltejs/sapper/issues/343
-  // (req, res, next) => {
-  //   res.locals.nonce = uuidv4();
-  //   next();
-  // },
-  // helmet({
-  //   contentSecurityPolicy: {
-  //     directives: {
-  //       scriptSrc: [
-  //         "'self'",
-  //         (req, res) => `'nonce-${res.locals.nonce}'`
-  //       ]
-  //     }
-  //   }
-  // }),
   helmet(),
   xss(),
   rateLimit({
