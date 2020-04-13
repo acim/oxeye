@@ -1,5 +1,6 @@
 import { isEmail } from "validator";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
@@ -62,6 +63,12 @@ UserSchema.pre("save", async function (next) {
 
 UserSchema.methods.isValidPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
+};
+
+UserSchema.methods.generateToken = function (expiresIn) {
+  return jwt.sign({ username: this.username }, process.env.JWT_SECRET_KEY, {
+    expiresIn,
+  });
 };
 
 UserSchema.methods.assignRole = async function (role) {
