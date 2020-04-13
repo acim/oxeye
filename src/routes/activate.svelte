@@ -1,7 +1,7 @@
 <script context="module">
   export async function preload(page, session) {
     try {
-      const response = await fetch(`auth/activate.json?token=${token}`, {
+      const response = await this.fetch(`auth/activate.json?token=${token}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
