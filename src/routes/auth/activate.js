@@ -4,16 +4,14 @@ import jwt from "jsonwebtoken";
 export async function get(req, res, next) {
   try {
     const decoded = jwt.verify(
-      req.params.query.token,
+      decodeURI(req.query.token),
       process.env.JWT_SECRET_KEY
     );
     const user = await User.findOne({ username: decoded.username });
     res.setHeader("Content-Type", "application/json");
-    res.status(200).end({
-      user,
-    });
+    res.json(user);
   } catch (err) {
-    res.status(500).end({
+    res.status(500).json({
       error: err.message,
     });
   }

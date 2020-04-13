@@ -8,5 +8,5 @@ export function get(req, res) {
     return;
   }
 
-  res.end(JSON.stringify(req.session.user));
+  res.json(req.session.user);
 }
