@@ -66,12 +66,14 @@
       <fieldset>
         <label for="username">Username</label>
         <input
+          id="username"
           type="text"
           bind:value={username}
           bind:this={usernameElement}
           required />
         <label for="password">Password</label>
         <input
+          id="password"
           type="password"
           bind:value={password}
           autocomplete="on"
