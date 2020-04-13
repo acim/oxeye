@@ -1,12 +1,15 @@
 <script context="module">
   export async function preload(page, session) {
     try {
-      const response = await this.fetch(`auth/activate.json?token=${token}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json"
+      const response = await this.fetch(
+        `auth/activate.json?token=${page.query.token}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
         }
-      });
+      );
       if (!response.ok) {
         return { data: response.error };
       }
