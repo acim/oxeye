@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import User from "../../models/User";
 import Role from "../../models/Role";
 import logger from "../../utils/logger";
@@ -15,7 +14,6 @@ export async function post(req, res) {
 
   try {
     const user = req.body;
-    user.password = await bcrypt.hash(user.password, 10);
     const role = await Role.findOne({ name: "subscriber" });
     user.role = role.id;
     logger.info(`creating user '${user.username}'`);

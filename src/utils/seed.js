@@ -1,4 +1,3 @@
-import bcrypt from "bcrypt";
 import User from "../models/User";
 import Role from "../models/Role";
 import logger from "./logger";
@@ -37,15 +36,14 @@ export default async () => {
     const owner = await Role.findOne({ name: "owner" });
 
     const { generate } = await import("randomstring");
-    const plainPwd = generate();
-    const hashPwd = await bcrypt.hash(plainPwd, 10);
-    logger.info(`creating admin user with password '${plainPwd}'`);
+    const password = generate();
+    logger.info(`creating admin user with password '${password}'`);
     await User.create({
       firstName: "John",
       lastName: "Doe",
       username: "admin",
       email: "john.doe@example.com",
-      password: hashPwd,
+      password,
       role: owner.id,
     });
   } catch (err) {
