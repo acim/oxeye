@@ -1,7 +1,7 @@
+import { isEmail } from "validator";
+import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
-import bcrypt from "bcrypt";
-import { isEmail } from "validator";
 
 const UserSchema = mongoose.Schema(
   {
@@ -29,8 +29,17 @@ const UserSchema = mongoose.Schema(
       required: true,
     },
     role: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Role",
+      type: String,
+      enum: [
+        "owner",
+        "editor",
+        "administrator",
+        "author",
+        "contributor",
+        "subscriber",
+      ],
+      default: "user",
+      required: true,
     },
   },
   { timestamps: true }
@@ -51,8 +60,17 @@ UserSchema.pre("save", async function (next) {
   }
 });
 
-// UserSchema.methods.assignRole = async (role) => {
-//   const r = await this.model("Role").findOne({ name: role });
-// };
+UserSchema.methods.isValidPassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+UserSchema.methods.assignRole = async function (role) {
+  const r = await this.model("Role").findOne({ name: role });
+  if (!r) {
+    throw new Error(`role ${role} it not found`);
+  }
+  this.role = r.id;
+  this.save();
+};
 
 export default mongoose.model("User", UserSchema);

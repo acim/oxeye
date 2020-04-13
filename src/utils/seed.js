@@ -33,8 +33,6 @@ export default async () => {
       return;
     }
 
-    const owner = await Role.findOne({ name: "owner" });
-
     const { generate } = await import("randomstring");
     const password = generate();
     logger.info(`creating admin user with password '${password}'`);
@@ -44,7 +42,7 @@ export default async () => {
       username: "admin",
       email: "john.doe@example.com",
       password,
-      role: owner.id,
+      role: "owner",
     });
   } catch (err) {
     logger.error(err.message);

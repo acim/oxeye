@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import User from "../../models/User";
-import Role from "../../models/Role";
 import logger from "../../utils/logger";
 
 const generateToken = (username) => {
@@ -14,10 +13,9 @@ export async function post(req, res) {
 
   try {
     const user = req.body;
-    const role = await Role.findOne({ name: "subscriber" });
-    user.role = role.id;
+    user.role = "subscriber";
     logger.info(`creating user '${user.username}'`);
-    const u = await User.create(user);
+    await User.create(user);
     res.status(204).end();
   } catch (err) {
     res.status(500).json({
