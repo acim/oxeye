@@ -1,6 +1,7 @@
 import { isEmail } from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import logger from "../utils/logger";
 import mongoose from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
@@ -42,6 +43,11 @@ const UserSchema = mongoose.Schema(
       default: "subscriber",
       required: true,
     },
+    active: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -69,6 +75,15 @@ UserSchema.methods.generateToken = function (expiresIn) {
   return jwt.sign({ username: this.username }, process.env.JWT_SECRET_KEY, {
     expiresIn,
   });
+};
+
+UserSchema.methods.activate = async function (role) {
+  if (this.active) {
+    logger.warn(`user ${this.username} already activated`);
+    return;
+  }
+  this.active = true;
+  this.save();
 };
 
 UserSchema.methods.assignRole = async function (role) {

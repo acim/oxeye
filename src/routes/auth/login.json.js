@@ -5,7 +5,7 @@ export async function post(req, res) {
 
   try {
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username, active: true });
     if (!user.isValidPassword(password)) {
       throw new Error();
     }

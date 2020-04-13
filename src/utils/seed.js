@@ -43,6 +43,7 @@ export default async () => {
       email: "john.doe@example.com",
       password,
       role: "owner",
+      active: true,
     });
   } catch (err) {
     logger.error(err.message);
