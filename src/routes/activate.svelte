@@ -18,7 +18,7 @@
 
       return { data: decode };
     } catch (err) {
-      return { data: decode.error };
+      return { data: err.message };
     }
   }
 </script>
