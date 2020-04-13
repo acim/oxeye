@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
 import User from "../../models/User";
 
 const generateToken = (username) => {
@@ -14,8 +13,7 @@ export async function post(req, res) {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
-    const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) {
+    if (!user.isValidPassword(password)) {
       throw new Error();
     }
     const token = generateToken(username);
