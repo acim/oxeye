@@ -16,7 +16,7 @@ export async function post(req, res) {
       from: "oxeye@ablab.io",
       to: data.email,
       subject: "Oxeye activation",
-      text: `https://oxeye.ablab.io/auth/activate/${token}`,
+      text: `https://oxeye.ablab.io/auth/activate?token=${token}`,
     });
     res.status(204).end();
   } catch (err) {
