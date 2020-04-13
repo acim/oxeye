@@ -30,7 +30,11 @@
     }
   }
 
-  onMount(() => usernameElement.focus());
+  onMount(() => {
+    setTimeout(() => {
+      usernameElement.focus();
+    }, 0);
+  });
 </script>
 
 <style>
@@ -53,8 +57,8 @@
   <title>Login</title>
 </svelte:head>
 
-<section class="section">
-  <div class="container">
+<section>
+  <div>
 
     <h1>Login</h1>
 
@@ -62,14 +66,12 @@
       <fieldset>
         <label for="username">Username</label>
         <input
-          class="input"
           type="text"
-          bind:this={usernameElement}
           bind:value={username}
+          bind:this={usernameElement}
           required />
         <label for="password">Password</label>
         <input
-          class="input"
           type="password"
           bind:value={password}
           autocomplete="on"
