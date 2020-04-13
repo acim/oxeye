@@ -2,7 +2,7 @@
   export async function preload(page, session) {
     try {
       const response = await this.fetch(
-        `//${page.host}/auth/activate.json?token=${page.query.token}`,
+        `https://${page.host}/auth/activate.json?token=${page.query.token}`,
         {
           method: "GET",
           headers: {
