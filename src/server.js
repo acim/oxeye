@@ -37,7 +37,7 @@ const getUser = (req) => {
     try {
       decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     } catch (err) {
-      console.log(err);
+      logger.error(err.message);
     }
 
     if (decoded) {
