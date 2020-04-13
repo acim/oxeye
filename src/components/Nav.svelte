@@ -19,6 +19,8 @@
       console.log(err);
     }
   }
+
+  $: loggedIn = $session && $session.user;
 </script>
 
 <style>
@@ -84,13 +86,15 @@
         admin
       </a>
     </li>
-    <li>
-      <a
-        aria-current={segment === 'register' ? 'page' : undefined}
-        href="register">
-        register
-      </a>
-    </li>
+    {#if !loggedIn}
+      <li>
+        <a
+          aria-current={segment === 'register' ? 'page' : undefined}
+          href="register">
+          register
+        </a>
+      </li>
+    {/if}
 
     <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
@@ -103,7 +107,7 @@
       </a>
     </li>
 
-    {#if $session && $session.user}
+    {#if loggedIn}
       <li>
         <a href="." on:click={logout}>logout</a>
       </li>

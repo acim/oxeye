@@ -39,7 +39,7 @@ const UserSchema = mongoose.Schema(
         "contributor",
         "subscriber",
       ],
-      default: "user",
+      default: "subscriber",
       required: true,
     },
   },

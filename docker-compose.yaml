@@ -38,6 +38,8 @@ services:
     environment:
       - MONGO_URI
       - JWT_SECRET_KEY
+      - MAILGUN_API_KEY
+      - MAILGUN_DOMAIN
     volumes:
       - ./:/app
     ports:
