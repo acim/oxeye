@@ -1,7 +1,10 @@
-import User from "../../models/User";
+import { goto } from "@sapper/app";
 import jwt from "jsonwebtoken";
+import User from "../../models/User";
 
 export async function get(req, res, next) {
+  res.setHeader("Content-Type", "application/json");
+
   try {
     const decoded = jwt.verify(
       decodeURI(req.query.token),
@@ -9,8 +12,7 @@ export async function get(req, res, next) {
     );
     const user = await User.findOne({ username: decoded.username });
     user.activate();
-    res.setHeader("Content-Type", "application/json");
-    res.json({ message: "user activate, you can try to login now" });
+    res.status(204).end();
   } catch (err) {
     res.status(500).json({
       error: err.message,

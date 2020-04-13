@@ -1,10 +1,25 @@
 <script context="module">
   export async function preload(page, session) {
-    if (page.token) {
-      return;
+    try {
+      const response = await fetch(`auth/activate.json?token=${token}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      if (!response.ok) {
+        return { data: response.error };
+      }
+
+      const decode = await response.json();
+      if (decode.error) {
+        return { data: decode.error };
+      }
+
+      return { data: decode };
+    } catch (err) {
+      return { data: decode.error };
     }
-    const data = { page, session };
-    return { data };
   }
 </script>
 
