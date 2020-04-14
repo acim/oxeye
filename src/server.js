@@ -65,7 +65,10 @@ app.use(
     windowMs: 10 * 60 * 1000, // 10 mins
     max: 100,
     skip: (req, res) => {
-      console.log("AAA", req.params.path);
+      console.log("AAA", req.url);
+      console.dir("BBB", req.originalUrl);
+      console.dir("CCC", req.baseUrl);
+      console.dir("DDD", req.path);
       if (req.params.path == "/health") {
         return true;
       }
