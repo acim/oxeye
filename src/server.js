@@ -64,6 +64,12 @@ app.use(
   rateLimit({
     windowMs: 10 * 60 * 1000, // 10 mins
     max: 100,
+    skip: (req, res) => {
+      console.log("AAA", req.params.path);
+      if (req.params.path == "/health") {
+        return true;
+      }
+    },
   }),
   hpp(),
   sapper.middleware({
