@@ -1,6 +1,7 @@
 <script>
   import { goto, stores } from "@sapper/app";
   import { Container } from "svelte-chota";
+  import Nav from "./ONav.svelte";
 
   const { session } = stores();
   export let segment;
@@ -23,6 +24,7 @@
   $: loggedIn = $session && $session.user;
 
   const active = page => {
+    console.log(segment, page);
     if (segment === page) {
       return true;
     }
@@ -31,38 +33,32 @@
 </script>
 
 <Container>
-  <nav class="nav">
-    <div class="nav-left">
-      <a
-        aria-current={segment === undefined ? 'page' : undefined}
-        class:active={active(undefined)}
-        href=".">
-        Home
-      </a>
-    </div>
-    <div class="nav-left">
-      <a
-        aria-current={segment === 'profile' ? 'page' : undefined}
-        class:active={active('profile')}
-        href="profile">
-        Profile
-      </a>
-    </div>
-    {#if !loggedIn}
-      <div class="nav-left">
-        <a
-          aria-current={segment === 'register' ? 'page' : undefined}
-          class:active={active('register')}
-          href="register">
-          Register
-        </a>
-      </div>
-    {/if}
+  <Nav>
+    <a
+      slot="left"
+      aria-current={segment === undefined ? 'page' : undefined}
+      class:active={active(undefined)}
+      href=".">
+      Home
+    </a>
+    <a
+      slot="left"
+      aria-current={segment === 'profile' ? 'page' : undefined}
+      class:active={active('profile')}
+      href="profile">
+      Profile
+    </a>
+    <a
+      slot="left"
+      aria-current={segment === 'register' ? 'page' : undefined}
+      class:active={active('register')}
+      class:is-hidden={loggedIn}
+      href="register">
+      Register
+    </a>
 
-    {#if loggedIn}
-      <div class="nav-left">
-        <a href="." on:click={logout}>logout</a>
-      </div>
-    {/if}
-  </nav>
+    <a slot="left" href="." class:is-hidden={!loggedIn} on:click={logout}>
+      Logout
+    </a>
+  </Nav>
 </Container>

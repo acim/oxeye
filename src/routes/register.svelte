@@ -17,7 +17,6 @@
     user.email &&
     user.username &&
     user.password;
-  let firstNameEl;
   let registered = false;
 
   async function submit() {
@@ -38,16 +37,9 @@
       const r = await response.json();
       error = r.error;
     } catch (err) {
-      console.log(2);
       error = err;
     }
   }
-
-  onMount(() => {
-    setTimeout(() => {
-      firstNameEl.focus();
-    }, 0);
-  });
 </script>
 
 <svelte:head>
@@ -61,11 +53,7 @@
   {:else}
     <form on:submit|preventDefault={submit}>
       <Field grouped {error}>
-        <Input
-          placeholder="First Name"
-          bind:value={user.firstName}
-          bind:this={firstNameEl}
-          required />
+        <Input placeholder="First Name" bind:value={user.firstName} required />
         <Input placeholder="Last Name" bind:value={user.lastName} required />
       </Field>
       <Field grouped {error}>

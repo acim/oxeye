@@ -8,7 +8,6 @@
   let password = "";
   let error = "";
   $: valid = username && password;
-  let usernameElement;
 
   async function submit() {
     try {
@@ -30,12 +29,6 @@
       error = err;
     }
   }
-
-  onMount(() => {
-    setTimeout(() => {
-      usernameElement.focus();
-    }, 0);
-  });
 </script>
 
 <svelte:head>
@@ -46,11 +39,7 @@
   <h1>Login</h1>
   <form on:submit|preventDefault={submit}>
     <Field grouped {error}>
-      <Input
-        placeholder="Username"
-        bind:value={username}
-        bind:this={usernameElement}
-        required />
+      <Input placeholder="Username" bind:value={username} required />
       <Input
         password
         placeholder="Password"

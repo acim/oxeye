@@ -11,6 +11,5 @@
 
   <figure>
     <img alt="Oxeye" src="oxeye.jpg" />
-    <figcaption>HIGH FIVE!</figcaption>
   </figure>
 </Container>
