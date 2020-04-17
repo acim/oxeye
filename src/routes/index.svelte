@@ -41,7 +41,7 @@
 <h1>Great success!</h1>
 
 <figure>
-  <img alt="Oxeye" src="oxeye.png" />
+  <img alt="Oxeye" src="oxeye.jpg" />
   <figcaption>HIGH FIVE!</figcaption>
 </figure>
 
