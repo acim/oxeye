@@ -21,34 +21,46 @@
   }
 
   $: loggedIn = $session && $session.user;
+
+  const active = page => {
+    if (segment === page) {
+      return true;
+    }
+    return false;
+  };
 </script>
 
-<nav>
-  <ul>
-    <li>
-      <a aria-current={segment === undefined ? 'page' : undefined} href=".">
-        home
+<nav class="nav">
+  <div class="nav-left">
+    <a
+      aria-current={segment === undefined ? 'page' : undefined}
+      class:active={active(undefined)}
+      href=".">
+      home
+    </a>
+  </div>
+  <div class="nav-left">
+    <a
+      aria-current={segment === 'admin' ? 'page' : undefined}
+      class:active={active('admin')}
+      href="admin">
+      admin
+    </a>
+  </div>
+  {#if !loggedIn}
+    <div class="nav-left">
+      <a
+        aria-current={segment === 'register' ? 'page' : undefined}
+        class:active={active('register')}
+        href="register">
+        register
       </a>
-    </li>
-    <li>
-      <a aria-current={segment === 'admin' ? 'page' : undefined} href="admin">
-        admin
-      </a>
-    </li>
-    {#if !loggedIn}
-      <li>
-        <a
-          aria-current={segment === 'register' ? 'page' : undefined}
-          href="register">
-          register
-        </a>
-      </li>
-    {/if}
+    </div>
+  {/if}
 
-    {#if loggedIn}
-      <li>
-        <a href="." on:click={logout}>logout</a>
-      </li>
-    {/if}
-  </ul>
+  {#if loggedIn}
+    <div class="nav-left">
+      <a href="." on:click={logout}>logout</a>
+    </div>
+  {/if}
 </nav>
