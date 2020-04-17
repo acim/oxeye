@@ -76,7 +76,7 @@
             type="email"
             bind:value={user.email}
             required />
-          <Button primary disabled={!valid}>Login</Button>
+          <Button primary disabled={!valid}>Register</Button>
         </Field>
       </form>
       {#if error}
