@@ -38,15 +38,6 @@
   });
 </script>
 
-<style>
-  fieldset {
-    border: none;
-  }
-  input {
-    display: block;
-  }
-</style>
-
 <svelte:head>
   <title>Login</title>
 </svelte:head>

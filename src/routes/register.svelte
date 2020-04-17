@@ -50,15 +50,6 @@
   });
 </script>
 
-<style>
-  fieldset {
-    border: none;
-  }
-  input {
-    display: block;
-  }
-</style>
-
 <svelte:head>
   <title>Register</title>
 </svelte:head>
