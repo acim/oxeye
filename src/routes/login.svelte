@@ -25,7 +25,7 @@
         return;
       }
       $session = decode;
-      goto("admin");
+      goto("profile");
     } catch (err) {
       error = err;
     }

@@ -5,7 +5,7 @@
       return;
     }
 
-    const res = await this.fetch("admin/config.json", {
+    const res = await this.fetch("profile/config.json", {
       headers: {
         "Content-Type": "application/json"
       }
@@ -25,5 +25,5 @@
   Your username is: {data.username}
   <hr />
 {/if}
-This is fetching resource /admin/config. Try to logout and to reach this
+This is fetching resource /profile/config. Try to logout and to reach this
 resource by typing the url in your browser.
