@@ -1,7 +1,7 @@
 <script>
   import { goto, stores } from "@sapper/app";
   import { onMount } from "svelte";
-  import { Button } from "svelte-chota";
+  import { Container, Input, Field, Button } from "svelte-chota";
 
   const { session } = stores();
   let username = "";
@@ -42,30 +42,23 @@
   <title>Login</title>
 </svelte:head>
 
-<section>
-  <div>
-
-    <h1>Login</h1>
-
-    <form on:submit|preventDefault={submit}>
-      <fieldset>
-        <label for="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          bind:value={username}
-          bind:this={usernameElement}
-          required />
-        <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          bind:value={password}
-          autocomplete="on"
-          required />
-        <Button primary disabled={!valid}>Login</Button>
-      </fieldset>
-    </form>
-    {#if error}Error: {error}{/if}
-  </div>
-</section>
+<Container>
+  <h1>Login</h1>
+  <form on:submit|preventDefault={submit}>
+    <Field grouped {error}>
+      <Input
+        placeholder="Username"
+        bind:value={username}
+        bind:this={usernameElement}
+        required />
+      <Input
+        password
+        placeholder="Password"
+        bind:value={password}
+        autocomplete="on"
+        required />
+      <Button primary disabled={!valid}>Login</Button>
+    </Field>
+  </form>
+  {#if error}Error: {error}{/if}
+</Container>
