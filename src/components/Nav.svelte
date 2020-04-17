@@ -21,14 +21,6 @@
   }
 
   $: loggedIn = $session && $session.user;
-
-  const active = page => {
-    console.log(segment, page);
-    if (segment === page) {
-      return true;
-    }
-    return false;
-  };
 </script>
 
 <Container>
@@ -36,21 +28,21 @@
     <a
       slot="left"
       aria-current={segment === undefined ? 'page' : undefined}
-      class:active={active(undefined)}
+      class:active={segment === undefined}
       href=".">
       Home
     </a>
     <a
       slot="left"
       aria-current={segment === 'profile' ? 'page' : undefined}
-      class:active={active('profile')}
+      class:active={segment === 'profile'}
       href="profile">
       Profile
     </a>
     <a
       slot="left"
       aria-current={segment === 'register' ? 'page' : undefined}
-      class:active={active('register')}
+      class:active={segment === 'register'}
       class:is-hidden={loggedIn}
       href="register">
       Register
