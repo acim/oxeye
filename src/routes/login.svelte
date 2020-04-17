@@ -1,6 +1,7 @@
 <script>
   import { goto, stores } from "@sapper/app";
   import { onMount } from "svelte";
+  import { Button } from "svelte-chota";
 
   const { session } = stores();
   let username = "";
@@ -44,13 +45,6 @@
   input {
     display: block;
   }
-  button {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
-  }
 </style>
 
 <svelte:head>
@@ -78,7 +72,7 @@
           bind:value={password}
           autocomplete="on"
           required />
-        <button type="submit" disabled={!valid}>Login</button>
+        <Button primary disabled={!valid}>Login</Button>
       </fieldset>
     </form>
     {#if error}Error: {error}{/if}
