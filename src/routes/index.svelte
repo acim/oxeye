@@ -1,5 +1,5 @@
 <script>
-  import { Container } from "svelte-chota";
+  import { Container } from "svelte-chota-ablab";
 </script>
 
 <svelte:head>
