@@ -55,7 +55,6 @@
       href="register">
       Register
     </a>
-
     <a slot="left" href="." class:is-hidden={!loggedIn} on:click={logout}>
       Logout
     </a>
