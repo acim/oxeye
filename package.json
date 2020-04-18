@@ -1,7 +1,7 @@
 {
   "name": "oxeye",
   "description": "Sapper Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "repository": {
     "type": "git",
     "url": "git@github.com:acim/oxeye.git"
@@ -60,7 +60,6 @@
     "sapper": "^0.27.12",
     "sapper-environment": "^1.0.1",
     "svelte": "^3.20.1",
-    "svelte-chota": "^1.7.1",
-    "svelte-preprocess": "^3.7.1"
+    "svelte-chota": "^1.7.1"
   }
 }
