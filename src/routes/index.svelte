@@ -1,5 +1,5 @@
 <script>
-  import { Container } from "svelte-chota-ablab";
+  import { Container } from "svelte-chota";
   import TransitionWrapper from "../components/TransitionWrapper.svelte";
 </script>
 

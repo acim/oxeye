@@ -1,6 +1,6 @@
 <script>
   import { goto, stores } from "@sapper/app";
-  import { Container, Nav } from "svelte-chota-ablab";
+  import { Container, Nav } from "svelte-chota";
 
   const { session } = stores();
   export let segment;
