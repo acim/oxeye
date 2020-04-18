@@ -12,7 +12,7 @@
   }
 </style>
 
-{#if show}
+{#if !process.browser || show}
   <div in:fade>
     <slot />
   </div>
