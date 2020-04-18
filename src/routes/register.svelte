@@ -18,6 +18,7 @@
     user.username &&
     user.password;
   let registered = false;
+  $: console.log(error);
 
   async function submit() {
     try {
@@ -52,11 +53,11 @@
     You are successfuly registered. We sent you an activation email.
   {:else}
     <form on:submit|preventDefault={submit}>
-      <Field grouped {error}>
+      <Field grouped>
         <Input placeholder="First Name" bind:value={user.firstName} required />
         <Input placeholder="Last Name" bind:value={user.lastName} required />
       </Field>
-      <Field grouped {error}>
+      <Field grouped>
         <Input placeholder="Username" bind:value={user.username} required />
         <Input
           password
@@ -65,7 +66,7 @@
           autocomplete="on"
           required />
       </Field>
-      <Field grouped {error}>
+      <Field grouped>
         <Input
           placeholder="E-Mail"
           type="email"

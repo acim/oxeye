@@ -1,15 +1,20 @@
 <script>
-  import { Container } from "svelte-chota";
+  import { Container, Card } from "svelte-chota";
 </script>
+
+<style>
+  img {
+    border-radius: 5%;
+  }
+</style>
 
 <svelte:head>
   <title>Oxeye</title>
 </svelte:head>
 
 <Container>
-  <h1>Oxeye</h1>
-
-  <figure>
+  <Card>
+    <h2 slot="header">Oxeye</h2>
     <img alt="Oxeye" src="oxeye.jpg" />
-  </figure>
+  </Card>
 </Container>

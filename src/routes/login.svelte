@@ -38,7 +38,7 @@
 <Container>
   <h1>Login</h1>
   <form on:submit|preventDefault={submit}>
-    <Field grouped {error}>
+    <Field grouped>
       <Input placeholder="Username" bind:value={username} required />
       <Input
         password
