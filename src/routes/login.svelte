@@ -2,7 +2,6 @@
   import { goto, stores } from "@sapper/app";
   import { onMount } from "svelte";
   import { Container, Input, Field, Button } from "svelte-chota";
-  import TransitionWrapper from "../components/TransitionWrapper.svelte";
 
   const { session } = stores();
   let username = "";
@@ -36,21 +35,19 @@
   <title>Login</title>
 </svelte:head>
 
-<TransitionWrapper>
-  <Container>
-    <h1>Login</h1>
-    <form on:submit|preventDefault={submit}>
-      <Field grouped {error}>
-        <Input placeholder="Username" bind:value={username} required />
-        <Input
-          password
-          placeholder="Password"
-          bind:value={password}
-          autocomplete="on"
-          required />
-        <Button primary disabled={!valid}>Login</Button>
-      </Field>
-    </form>
-    {#if error}Error: {error}{/if}
-  </Container>
-</TransitionWrapper>
+<Container>
+  <h1>Login</h1>
+  <form on:submit|preventDefault={submit}>
+    <Field grouped {error}>
+      <Input placeholder="Username" bind:value={username} required />
+      <Input
+        password
+        placeholder="Password"
+        bind:value={password}
+        autocomplete="on"
+        required />
+      <Button primary disabled={!valid}>Login</Button>
+    </Field>
+  </form>
+  {#if error}Error: {error}{/if}
+</Container>

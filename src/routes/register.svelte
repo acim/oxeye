@@ -2,7 +2,6 @@
   import { goto } from "@sapper/app";
   import { onMount } from "svelte";
   import { Container, Input, Field, Button } from "svelte-chota";
-  import TransitionWrapper from "../components/TransitionWrapper.svelte";
 
   const user = {
     firstName: "",
@@ -47,45 +46,40 @@
   <title>Register</title>
 </svelte:head>
 
-<TransitionWrapper>
-  <Container>
-    <h1>Register</h1>
-    {#if registered}
-      You are successfuly registered. We sent you an activation email.
-    {:else}
-      <form on:submit|preventDefault={submit}>
-        <Field grouped {error}>
-          <Input
-            placeholder="First Name"
-            bind:value={user.firstName}
-            required />
-          <Input placeholder="Last Name" bind:value={user.lastName} required />
-        </Field>
-        <Field grouped {error}>
-          <Input placeholder="Username" bind:value={user.username} required />
-          <Input
-            password
-            placeholder="Password"
-            bind:value={user.password}
-            autocomplete="on"
-            required />
-        </Field>
-        <Field grouped {error}>
-          <Input
-            placeholder="E-Mail"
-            type="email"
-            bind:value={user.email}
-            required />
-          <Button primary disabled={!valid}>Register</Button>
-        </Field>
-      </form>
-      {#if error}
-        <div>Error: {error}</div>
-      {/if}
-      <div>
-        Already have an account?
-        <a href="login">Login</a>
-      </div>
+<Container>
+  <h1>Register</h1>
+  {#if registered}
+    You are successfuly registered. We sent you an activation email.
+  {:else}
+    <form on:submit|preventDefault={submit}>
+      <Field grouped {error}>
+        <Input placeholder="First Name" bind:value={user.firstName} required />
+        <Input placeholder="Last Name" bind:value={user.lastName} required />
+      </Field>
+      <Field grouped {error}>
+        <Input placeholder="Username" bind:value={user.username} required />
+        <Input
+          password
+          placeholder="Password"
+          bind:value={user.password}
+          autocomplete="on"
+          required />
+      </Field>
+      <Field grouped {error}>
+        <Input
+          placeholder="E-Mail"
+          type="email"
+          bind:value={user.email}
+          required />
+        <Button primary disabled={!valid}>Register</Button>
+      </Field>
+    </form>
+    {#if error}
+      <div>Error: {error}</div>
     {/if}
-  </Container>
-</TransitionWrapper>
+    <div>
+      Already have an account?
+      <a href="login">Login</a>
+    </div>
+  {/if}
+</Container>
