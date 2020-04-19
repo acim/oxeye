@@ -3,6 +3,7 @@
 [![GitHub](https://img.shields.io/github/license/acim/oxeye)](LICENSE)
 ![GitHub issues](https://img.shields.io/github/issues-raw/acim/oxeye)
 [![Build Status](https://drone.ablab.io/api/badges/acim/oxeye/status.svg)](https://drone.ablab.io/acim/oxeye)
+[![HitCount](http://hits.dwyl.com/acim/oxeye.svg)](http://hits.dwyl.com/acim/oxeye)
 
 <p align="center"><img src="static/oxeye.jpg"></p>
 
