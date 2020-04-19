@@ -14,16 +14,30 @@
       const data = await res.json();
       return { data };
     }
+
+    return { data: { error: "Profile not found" } };
   }
 </script>
 
 <script>
+  import PasswordChangeForm from "../../components/PasswordChangeForm.svelte";
+  import { Container, Card } from "svelte-chota";
+
   export let data;
+  let currentPassword;
+  let newPassword;
+  const submit = () => {
+    console.log("submit pressed");
+  };
 </script>
 
-{#if data}
-  Your username is: {data.username}
-  <hr />
-{/if}
-This is fetching resource /profile/config. Try to logout and to reach this
-resource by typing the url in your browser.
+<Container>
+  {#if data}
+    Your username is: {data.username}
+    <hr />
+    <Card>
+      <h2 slot="header">Change password</h2>
+      <PasswordChangeForm {currentPassword} {newPassword} {submit} />
+    </Card>
+  {/if}
+</Container>
