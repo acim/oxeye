@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:12 AS build
+FROM node:12-alpine AS build
 
 WORKDIR /app
 COPY . .
@@ -6,7 +6,7 @@ COPY . .
 RUN npm ci
 RUN SAPPER_TIMESTAMP=$(date +%s%3N) npm run build
 
-FROM node:12 AS prod
+FROM node:12-alpine AS prod
 
 WORKDIR /app
 COPY package.json package-lock.json ./
