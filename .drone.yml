@@ -28,10 +28,10 @@ steps:
         from_secret: registry_username
       password:
         from_secret: registry_password
-      cache_from: cr.ablab.io/oxeye
-    volumes:
-      - name: node-modules-cache
-        path: /drone/src/node_modules
+    #   cache_from: cr.ablab.io/oxeye
+    # volumes:
+    #   - name: node-modules-cache
+    #     path: /drone/src/node_modules
     depends_on:
       - tag
   - name: deploy
