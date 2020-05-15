@@ -20,7 +20,7 @@ steps:
     depends_on:
       - lint
   - name: build
-    image: ablab/drone-kaniko:0.19.0-r2
+    image: ablab/drone-kaniko:0.22.0-r0
     settings:
       registry: cr.ablab.io
       repo: oxeye
