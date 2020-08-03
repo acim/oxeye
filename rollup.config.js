@@ -68,7 +68,7 @@ export default {
         module: true,
       }),
     ],
-
+    preserveEntrySignatures: 'strict',
     onwarn,
   },
 
@@ -98,7 +98,6 @@ export default {
       require("module").builtinModules ||
       Object.keys(process.binding("natives"))
     ),
-
     onwarn,
   },
 
