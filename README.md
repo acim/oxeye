@@ -1,4 +1,4 @@
-# Oxeye - [Sapper](https://sapper.svelte.dev/) Universal/Isomorphic Web Application Skeleton Project Implementing Authentication, Authorization and Accounting
+# Oxeye - [Sapper](https://sapper.svelte.dev/) Universal/Isomorphic Web Application Skeleton Project Implementing Authentication
 
 [![GitHub](https://img.shields.io/github/license/acim/oxeye)](LICENSE)
 ![GitHub issues](https://img.shields.io/github/issues-raw/acim/oxeye)
@@ -37,6 +37,11 @@ Your Oxeye application should be available at http://localhost:3000/ and if you 
 Mongo Express administration tool, it should be available at http://localhost:3001/.
 
 If there is no user in the database, Oxeye is going to create admin user and you can see the password in the output.
+
+## TODO
+
+- implement authorization
+- implement accounting
 
 ## [Demo](https://oxeye.ablab.io/)
 
