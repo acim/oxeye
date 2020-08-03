@@ -23,7 +23,7 @@ steps:
     image: plugins/docker
     settings:
       registry: cr.ablab.io
-      repo: oxeye
+      repo: cr.ablab.io/oxeye
       username:
         from_secret: registry_username
       password:
