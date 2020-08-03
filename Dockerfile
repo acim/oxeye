@@ -13,7 +13,7 @@ COPY package.json package-lock.json ./
 
 RUN npm ci --production
 
-FROM mhart/alpine-node:slim-12
+FROM mhart/alpine-node:slim-14
 
 LABEL org.label-schema.name="oxeye" \
     org.label-schema.vendor="ablab.io"
