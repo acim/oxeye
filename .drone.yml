@@ -5,7 +5,7 @@ name: default
 
 steps:
   - name: lint
-    image: node:12
+    image: mhart/alpine-node:14
     commands:
       - npm ci
       - npm run lint
