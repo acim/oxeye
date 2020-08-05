@@ -9,13 +9,10 @@ steps:
     commands:
       - npm ci
       - npm run lint
-    volumes:
-      - name: node-modules-cache
-        path: /drone/src/node_modules
   - name: tag
     image: busybox
     commands:
-      - echo -n "${DRONE_BRANCH}-${DRONE_COMMIT_SHA:0:8}" > .tags
+      - echo -n "${DRONE_BRANCH/\//-}-${DRONE_COMMIT_SHA:0:8}" > .tags
       - if [ ${DRONE_BRANCH} = "master" ]; then echo -n ',stable,latest' >> .tags; else echo -n ',dev' >> .tags; fi
     depends_on:
       - lint
@@ -28,10 +25,6 @@ steps:
         from_secret: registry_username
       password:
         from_secret: registry_password
-      cache_from: cr.ablab.io/oxeye
-    volumes:
-      - name: node-modules-cache
-        path: /drone/src/node_modules
     depends_on:
       - tag
   # - name: deploy
@@ -54,8 +47,3 @@ steps:
   #       - master
   #     event:
   #       - push
-
-volumes:
-  - name: node-modules-cache
-    host:
-      path: /tmp/cache/${DRONE_REPO}/node-modules
