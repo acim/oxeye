@@ -59,7 +59,24 @@ app.use(
     next();
   },
   mongoSanitize(),
-  helmet(),
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'", "http://localhost:10000"],
+      styleSrc: ["'self'", "https:", "'unsafe-inline'"],
+      fontSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    },
+  }),
+  helmet.dnsPrefetchControl(),
+  helmet.expectCt(),
+  helmet.frameguard(),
+  helmet.hidePoweredBy(),
+  helmet.hsts(),
+  helmet.ieNoOpen(),
+  helmet.noSniff(),
+  helmet.permittedCrossDomainPolicies(),
+  helmet.referrerPolicy(),
+  helmet.xssFilter(),
   xss(),
   rateLimit({
     windowMs: 10 * 60 * 1000, // 10 mins
