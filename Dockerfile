@@ -14,9 +14,6 @@ COPY package.json package-lock.json ./
 
 RUN npm ci --production
 
-COPY static static
-COPY __sapper__ __sapper__
-
 
 FROM mhart/alpine-node:slim-14
 
