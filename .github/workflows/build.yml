@@ -32,6 +32,7 @@ jobs:
 
   build:
     name: build
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Check out
