@@ -20,6 +20,10 @@ export interface User extends Document {
   assignRole: (Role) => void
 }
 
+export interface UserSimple {
+  username: string
+}
+
 const UserSchema: Schema = new Schema(
   {
     firstName: {

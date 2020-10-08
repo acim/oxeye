@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import User from "../../models/User"
+import User, { UserSimple } from "../../models/User"
 
 export async function get(req, res, next) {
   res.setHeader("Content-Type", "application/json")
@@ -10,7 +10,7 @@ export async function get(req, res, next) {
       process.env.JWT_SECRET_KEY
     )
     const user = await User.findOne({
-      username: (decoded as { username: string }).username,
+      username: (decoded as UserSimple).username,
     })
     user.activate()
     res.status(204).end()

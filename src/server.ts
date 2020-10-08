@@ -1,5 +1,5 @@
 import sirv from "sirv"
-import express from "express"
+import express, { Request, Response } from "express"
 import compression from "compression"
 import * as sapper from "@sapper/server"
 import dotenv from "dotenv"
@@ -14,15 +14,31 @@ import mongo from "./utils/mongo"
 import cookieParser from "cookie-parser"
 import jwt from "jsonwebtoken"
 import seed from "./utils/seed"
+import type { UserSimple } from "./models/User"
 
 const { PORT, NODE_ENV } = process.env
 const dev = NODE_ENV === "development"
+const defaultSrc = ["'self'"]
+if (dev) {
+  defaultSrc.push("http://localhost:10000")
+}
+
 dotenv.config()
+
+declare global {
+  namespace Express {
+    export interface Request {
+      session: {
+        user: UserSimple
+      }
+    }
+  }
+}
 
 mongo()
 
-const getUser = (req) => {
-  let token
+const getUser: (Request) => UserSimple = (req) => {
+  let token: string
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
@@ -54,16 +70,16 @@ app.use(
   morgan("tiny", { stream: logger.stream }),
   express.json(),
   cookieParser(),
-  // (req, res, next) => {
-  //   req.session = { user: getUser(req) }
-  //   next()
-  // },
+  (req, res, next) => {
+    req.session = { user: getUser(req) }
+    next()
+  },
   mongoSanitize(),
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ["'self'", "http://localhost:10000"],
-      styleSrc: ["'self'", "https:", "'unsafe-inline'"],
-      fontSrc: ["'self'"],
+      defaultSrc,
+      styleSrc: ["'unsafe-inline'", "'self'", "https:"],
+      fontSrc: ["'self'", "https:"],
       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
     },
   }),
