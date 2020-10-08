@@ -54,10 +54,10 @@ app.use(
   morgan("tiny", { stream: logger.stream }),
   express.json(),
   cookieParser(),
-  (req, res, next) => {
-    req.session = { user: getUser(req) }
-    next()
-  },
+  // (req, res, next) => {
+  //   req.session = { user: getUser(req) }
+  //   next()
+  // },
   mongoSanitize(),
   helmet.contentSecurityPolicy({
     directives: {

@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Field, Input, Button } from "svelte-chota"
 
-  export let submit
-  export let currentPassword
-  export let newPassword
-  let confirmNewPassword
+  export let submit: () => void
+  export let currentPassword: string
+  export let newPassword: string
+  let confirmNewPassword: string
 
   $: valid =
     currentPassword &&
