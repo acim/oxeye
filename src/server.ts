@@ -1,5 +1,5 @@
 import sirv from "sirv"
-import express, { Request, Response } from "express"
+import express, { Request } from "express"
 import compression from "compression"
 import * as sapper from "@sapper/server"
 import dotenv from "dotenv"
@@ -67,7 +67,7 @@ const app = express()
 app.use(
   compression({ threshold: 0 }),
   sirv("static", { dev }),
-  morgan("tiny", { stream: logger.stream }),
+  morgan("tiny", { ...logger }),
   express.json(),
   cookieParser(),
   (req, res, next) => {

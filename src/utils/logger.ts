@@ -11,10 +11,10 @@ const logger = winston.createLogger({
   exitOnError: false,
 })
 
-logger.stream = {
-  write: function (message, encoding) {
-    logger.info(message)
-  },
-}
-
+logger.stream = () =>
+  winston.stream({
+    write: function (message) {
+      logger.info(message.trim())
+    },
+  })
 export default logger

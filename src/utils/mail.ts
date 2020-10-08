@@ -3,6 +3,7 @@
 import mailgun from "mailgun-js"
 
 export class Mailgun {
+  private mailgun: mailgun.Mailgun
   constructor() {
     this.mailgun = mailgun({
       apiKey: process.env.MAILGUN_API_KEY,
