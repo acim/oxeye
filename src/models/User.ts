@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken"
 import logger from "../utils/logger"
 import { model, Document, Schema } from "mongoose"
 import uniqueValidator from "mongoose-unique-validator"
+import type { Role } from "./Role"
 
 export interface User extends Document {
   firstName: string
@@ -13,6 +14,10 @@ export interface User extends Document {
   password: string
   role: string
   active: boolean
+  isValidPassword: (string) => Promise<boolean>
+  generateToken: (string) => string
+  activate: () => void
+  assignRole: (Role) => void
 }
 
 const UserSchema: Schema = new Schema(
@@ -87,7 +92,7 @@ UserSchema.methods.generateToken = function (expiresIn) {
   })
 }
 
-UserSchema.methods.activate = async function (role) {
+UserSchema.methods.activate = async function () {
   if (this.active) {
     logger.warn(`user ${this.username} already activated`)
     return

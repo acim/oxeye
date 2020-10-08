@@ -1,4 +1,3 @@
-import { goto } from "@sapper/app"
 import jwt from "jsonwebtoken"
 import User from "../../models/User"
 
@@ -10,7 +9,9 @@ export async function get(req, res, next) {
       decodeURI(req.query.token),
       process.env.JWT_SECRET_KEY
     )
-    const user = await User.findOne({ username: decoded.username })
+    const user = await User.findOne({
+      username: (decoded as { username: string }).username,
+    })
     user.activate()
     res.status(204).end()
   } catch (err) {
