@@ -1,6 +1,6 @@
-import * as sapper from "@sapper/app";
-import "chota";
+import * as sapper from "@sapper/app"
+import "chota"
 
 sapper.start({
   target: document.querySelector("#sapper"),
-});
+})
