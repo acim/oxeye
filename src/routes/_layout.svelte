@@ -3,7 +3,7 @@
   import { onMount } from "svelte"
   import { fade } from "svelte/transition"
 
-  export let segment
+  export let segment: string
   let visible = false
 
   onMount(() => (visible = true))
@@ -54,7 +54,7 @@
 
 <Nav {segment} />
 
-{#if visible || !process.browser}
+{#if visible || typeof window === 'undefined'}
   <main transition:fade>
     <slot />
   </main>

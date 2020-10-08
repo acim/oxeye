@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
-  export async function preload(page, session) {
+  import type { Preload } from "@sapper/common"
+
+  export const preload: Preload = async function (this, page, session) {
     if (!session || !session.user) {
       this.redirect(302, "login")
       return

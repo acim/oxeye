@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
-  export async function preload(page, session) {
+  import type { Preload } from "@sapper/common"
+
+  export const preload: Preload = async function (this, page, session) {
     try {
       const response = await this.fetch(
         `${process.env.SAPPER_APP_BASE_URL}/auth/activate.json?token=${page.query.token}`,

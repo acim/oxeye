@@ -1,6 +1,5 @@
 <script lang="ts">
   import { goto, stores } from "@sapper/app"
-  import { onMount } from "svelte"
   import { Container, Input, Field, Button } from "svelte-chota"
 
   const { session } = stores()
