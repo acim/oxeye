@@ -21,7 +21,7 @@
   }
 </script>
 
-<script  lang="ts"s>
+<script lang="ts" s>
   export let data
 </script>
 

@@ -1,9 +1,9 @@
-import { isEmail } from "validator";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import logger from "../utils/logger";
-import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
+import { isEmail } from "validator"
+import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken"
+import logger from "../utils/logger"
+import mongoose from "mongoose"
+import uniqueValidator from "mongoose-unique-validator"
 
 const UserSchema = mongoose.Schema(
   {
@@ -50,49 +50,49 @@ const UserSchema = mongoose.Schema(
     },
   },
   { timestamps: true }
-);
+)
 
-UserSchema.plugin(uniqueValidator);
+UserSchema.plugin(uniqueValidator)
 
 UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password")) return next()
   try {
     this.password = await bcrypt.hash(
       this.password,
       process.env.BCRYPT_ROUNDS || 10
-    );
-    return next();
+    )
+    return next()
   } catch (err) {
-    return next(err);
+    return next(err)
   }
-});
+})
 
 UserSchema.methods.isValidPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
-};
+  return await bcrypt.compare(password, this.password)
+}
 
 UserSchema.methods.generateToken = function (expiresIn) {
   return jwt.sign({ username: this.username }, process.env.JWT_SECRET_KEY, {
     expiresIn,
-  });
-};
+  })
+}
 
 UserSchema.methods.activate = async function (role) {
   if (this.active) {
-    logger.warn(`user ${this.username} already activated`);
-    return;
+    logger.warn(`user ${this.username} already activated`)
+    return
   }
-  this.active = true;
-  this.save();
-};
+  this.active = true
+  this.save()
+}
 
 UserSchema.methods.assignRole = async function (role) {
-  const r = await this.model("Role").findOne({ name: role });
+  const r = await this.model("Role").findOne({ name: role })
   if (!r) {
-    throw new Error(`role ${role} it not found`);
+    throw new Error(`role ${role} it not found`)
   }
-  this.role = r.id;
-  this.save();
-};
+  this.role = r.id
+  this.save()
+}
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("User", UserSchema)

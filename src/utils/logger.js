@@ -1,4 +1,4 @@
-import * as winston from "winston";
+import * as winston from "winston"
 
 const logger = winston.createLogger({
   levels: winston.config.npm.levels,
@@ -9,12 +9,12 @@ const logger = winston.createLogger({
     }),
   ],
   exitOnError: false,
-});
+})
 
 logger.stream = {
   write: function (message, encoding) {
-    logger.info(message);
+    logger.info(message)
   },
-};
+}
 
-export default logger;
+export default logger

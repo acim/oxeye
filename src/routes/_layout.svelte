@@ -1,12 +1,12 @@
 <script lang="ts">
-  import Nav from "../components/Nav.svelte";
-  import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
+  import Nav from "../components/Nav.svelte"
+  import { onMount } from "svelte"
+  import { fade } from "svelte/transition"
 
-  export let segment;
-  let visible = false;
+  export let segment
+  let visible = false
 
-  onMount(() => (visible = true));
+  onMount(() => (visible = true))
 </script>
 
 <style>

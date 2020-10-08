@@ -1,6 +1,6 @@
-"use strict";
+"use strict"
 
-import mailgun from "mailgun-js";
+import mailgun from "mailgun-js"
 
 export class Mailgun {
   constructor() {
@@ -8,10 +8,10 @@ export class Mailgun {
       apiKey: process.env.MAILGUN_API_KEY,
       domain: process.env.MAILGUN_DOMAIN,
       host: "api.eu.mailgun.net",
-    });
+    })
   }
 
   send({ from, to, subject, text }) {
-    this.mailgun.messages().send({ from, to, subject, text });
+    this.mailgun.messages().send({ from, to, subject, text })
   }
 }

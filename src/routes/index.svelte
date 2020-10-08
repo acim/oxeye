@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Container, Card } from "svelte-chota";
+  import { Container, Card } from "svelte-chota"
 </script>
 
 <style>

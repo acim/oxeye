@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import logger from "./logger";
+import mongoose from "mongoose"
+import logger from "./logger"
 
 const db = async () => {
   const conn = await mongoose.connect(process.env.MONGO_URI, {
@@ -7,9 +7,9 @@ const db = async () => {
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-  });
+  })
 
-  logger.info(`connected to mongo host: ${conn.connection.host}`);
-};
+  logger.info(`connected to mongo host: ${conn.connection.host}`)
+}
 
-export default db;
+export default db

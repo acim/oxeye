@@ -1,26 +1,26 @@
 <script lang="ts">
-  import { goto, stores } from "@sapper/app";
-  import { Container, Nav } from "svelte-chota";
+  import { goto, stores } from "@sapper/app"
+  import { Container, Nav } from "svelte-chota"
 
-  const { session } = stores();
-  export let segment;
+  const { session } = stores()
+  export let segment: string
 
   async function logout() {
     try {
       await fetch("auth/logout.json", {
         method: "DELETE",
         headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      $session = null;
-      goto(".");
+          "Content-Type": "application/json",
+        },
+      })
+      $session = null
+      goto(".")
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   }
 
-  $: loggedIn = $session && $session.user;
+  $: loggedIn = $session && $session.user
 </script>
 
 <Container>

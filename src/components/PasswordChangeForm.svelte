@@ -1,17 +1,17 @@
 <script lang="ts">
-  import { Field, Input, Button } from "svelte-chota";
+  import { Field, Input, Button } from "svelte-chota"
 
-  export let submit;
-  export let currentPassword;
-  export let newPassword;
-  let confirmNewPassword;
+  export let submit
+  export let currentPassword
+  export let newPassword
+  let confirmNewPassword
 
   $: valid =
     currentPassword &&
     newPassword &&
     currentPassword !== newPassword &&
     confirmNewPassword &&
-    newPassword === confirmNewPassword;
+    newPassword === confirmNewPassword
 </script>
 
 <form on:submit|preventDefault={submit}>

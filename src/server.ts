@@ -93,12 +93,10 @@ app.use(
   })
 )
 
-const server = app.listen(PORT, (err) => {
-  if (err) logger.error(err.message)
-})
+const server = app.listen(PORT)
 
-process.on("unhandledRejection", (err, promise) => {
-  logger.error(err.message)
+process.on("unhandledRejection", (err: Error, promise) => {
+  console.log(err.message)
   server.close(() => process.exit(1))
 })
 

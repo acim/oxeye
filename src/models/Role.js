@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import uniqueValidator from "mongoose-unique-validator";
+import mongoose from "mongoose"
+import uniqueValidator from "mongoose-unique-validator"
 
 const RoleSchema = mongoose.Schema(
   {
@@ -10,15 +10,15 @@ const RoleSchema = mongoose.Schema(
     },
   },
   { toObject: { virtuals: true } }
-);
+)
 
-RoleSchema.plugin(uniqueValidator);
+RoleSchema.plugin(uniqueValidator)
 
 RoleSchema.virtual("role", {
   ref: "User",
   localField: "name",
   foreignField: "role",
   count: true,
-});
+})
 
-export default mongoose.model("Role", RoleSchema);
+export default mongoose.model("Role", RoleSchema)

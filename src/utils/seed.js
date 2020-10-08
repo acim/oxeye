@@ -1,10 +1,10 @@
-import User from "../models/User";
-import Role from "../models/Role";
-import logger from "./logger";
+import User from "../models/User"
+import Role from "../models/Role"
+import logger from "./logger"
 
 export default async () => {
   try {
-    const countRoles = await Role.countDocuments();
+    const countRoles = await Role.countDocuments()
     if (!countRoles) {
       await Role.create(
         {
@@ -25,17 +25,17 @@ export default async () => {
         {
           name: "subscriber",
         }
-      );
+      )
     }
 
-    const countUsers = await User.countDocuments();
+    const countUsers = await User.countDocuments()
     if (countUsers) {
-      return;
+      return
     }
 
-    const { generate } = await import("randomstring");
-    const password = generate();
-    logger.info(`creating admin user with password '${password}'`);
+    const { generate } = await import("randomstring")
+    const password = generate()
+    logger.info(`creating admin user with password '${password}'`)
     await User.create({
       firstName: "John",
       lastName: "Doe",
@@ -44,8 +44,8 @@ export default async () => {
       password,
       role: "owner",
       active: true,
-    });
+    })
   } catch (err) {
-    logger.error(err.message);
+    logger.error(err.message)
   }
-};
+}

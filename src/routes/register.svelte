@@ -1,44 +1,44 @@
 <script lang="ts">
-  import { goto } from "@sapper/app";
-  import { onMount } from "svelte";
-  import { Container, Input, Field, Button } from "svelte-chota";
+  import { goto } from "@sapper/app"
+  import { onMount } from "svelte"
+  import { Container, Input, Field, Button } from "svelte-chota"
 
   const user = {
     firstName: "",
     lastName: "",
     email: "",
     username: "",
-    password: ""
-  };
-  let error = "";
+    password: "",
+  }
+  let error = ""
   $: valid =
     user.firstName &&
     user.lastName &&
     user.email &&
     user.username &&
-    user.password;
-  let registered = false;
-  $: console.log(error);
+    user.password
+  let registered = false
+  $: console.log(error)
 
   async function submit() {
     try {
       const response = await fetch("auth/register.json", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(user)
-      });
+        body: JSON.stringify(user),
+      })
 
       if (response.ok) {
-        registered = true;
-        return;
+        registered = true
+        return
       }
 
-      const r = await response.json();
-      error = r.error;
+      const r = await response.json()
+      error = r.error
     } catch (err) {
-      error = err;
+      error = err
     }
   }
 </script>
@@ -78,9 +78,6 @@
     {#if error}
       <div>Error: {error}</div>
     {/if}
-    <div>
-      Already have an account?
-      <a href="login">Login</a>
-    </div>
+    <div>Already have an account? <a href="login">Login</a></div>
   {/if}
 </Container>
