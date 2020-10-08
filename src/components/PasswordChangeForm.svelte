@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { Field, Input, Button } from "svelte-chota";
 
   export let submit;

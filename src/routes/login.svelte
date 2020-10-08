@@ -1,32 +1,32 @@
-<script>
-  import { goto, stores } from "@sapper/app";
-  import { onMount } from "svelte";
-  import { Container, Input, Field, Button } from "svelte-chota";
+<script lang="ts">
+  import { goto, stores } from "@sapper/app"
+  import { onMount } from "svelte"
+  import { Container, Input, Field, Button } from "svelte-chota"
 
-  const { session } = stores();
-  let username = "";
-  let password = "";
-  let error = "";
-  $: valid = username && password;
+  const { session } = stores()
+  let username = ""
+  let password = ""
+  let error = ""
+  $: valid = username && password
 
   async function submit() {
     try {
       const response = await fetch("auth/login.json", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password })
-      });
-      const decode = await response.json();
+        body: JSON.stringify({ username, password }),
+      })
+      const decode = await response.json()
       if (decode.error) {
-        error = decode.error;
-        return;
+        error = decode.error
+        return
       }
-      $session = decode;
-      goto("profile");
+      $session = decode
+      goto("profile")
     } catch (err) {
-      error = err;
+      error = err
     }
   }
 </script>

@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
   export async function preload(page, session) {
     try {
       const response = await this.fetch(
@@ -6,23 +6,23 @@
         {
           method: "GET",
           headers: {
-            "Content-Type": "application/json"
-          }
+            "Content-Type": "application/json",
+          },
         }
-      );
+      )
       if (!response.ok) {
-        return { data: response.error };
+        return { data: response.error }
       }
 
-      return { data: "account activated, you can login now" };
+      return { data: "account activated, you can login now" }
     } catch (err) {
-      return { data: err.message };
+      return { data: err.message }
     }
   }
 </script>
 
-<script>
-  export let data;
+<script  lang="ts"s>
+  export let data
 </script>
 
 <section>{data}</section>

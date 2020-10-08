@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { goto, stores } from "@sapper/app";
   import { Container, Nav } from "svelte-chota";
 

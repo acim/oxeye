@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Nav from "../components/Nav.svelte";
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
