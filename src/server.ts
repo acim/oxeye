@@ -15,6 +15,7 @@ import cookieParser from "cookie-parser"
 import jwt from "jsonwebtoken"
 import seed from "./utils/seed"
 import type { UserSimple } from "./models/User"
+import "chota"
 
 const { PORT, NODE_ENV } = process.env
 const dev = NODE_ENV === "development"
