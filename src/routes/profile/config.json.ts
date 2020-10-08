@@ -1,4 +1,6 @@
-export function get(req, res) {
+import type { Request, Response } from "express"
+
+export function get(req: Request, res: Response) {
   res.setHeader("Content-Type", "application/json")
 
   if (!req.session.user) {
