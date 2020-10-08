@@ -1,7 +1,11 @@
-import mongoose from "mongoose"
+import { model, Document, Schema } from "mongoose"
 import uniqueValidator from "mongoose-unique-validator"
 
-const RoleSchema = mongoose.Schema(
+export interface Role extends Document {
+  name: string
+}
+
+const RoleSchema: Schema = new Schema(
   {
     name: {
       type: String,
@@ -21,4 +25,4 @@ RoleSchema.virtual("role", {
   count: true,
 })
 
-export default mongoose.model("Role", RoleSchema)
+export default model<Role>("Role", RoleSchema)

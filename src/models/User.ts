@@ -1,11 +1,21 @@
-import { isEmail } from "validator"
+import validator from "validator"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 import logger from "../utils/logger"
-import mongoose from "mongoose"
+import { model, Document, Schema } from "mongoose"
 import uniqueValidator from "mongoose-unique-validator"
 
-const UserSchema = mongoose.Schema(
+export interface User extends Document {
+  firstName: string
+  lastName: string
+  username: string
+  email: string
+  password: string
+  role: string
+  active: boolean
+}
+
+const UserSchema: Schema = new Schema(
   {
     firstName: {
       type: String,
@@ -24,7 +34,7 @@ const UserSchema = mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      validate: [isEmail, "invalid email"],
+      validate: [validator.isEmail, "invalid email"],
     },
     password: {
       type: String,
@@ -54,7 +64,7 @@ const UserSchema = mongoose.Schema(
 
 UserSchema.plugin(uniqueValidator)
 
-UserSchema.pre("save", async function (next) {
+UserSchema.pre<User>("save", async function (next) {
   if (!this.isModified("password")) return next()
   try {
     this.password = await bcrypt.hash(
@@ -95,4 +105,4 @@ UserSchema.methods.assignRole = async function (role) {
   this.save()
 }
 
-export default mongoose.model("User", UserSchema)
+export default model<User>("User", UserSchema)
