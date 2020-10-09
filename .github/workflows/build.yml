@@ -28,6 +28,7 @@ jobs:
       - name: Validate
         run: |
           npm ci
+          npm run build
           npm run validate
 
   build:
