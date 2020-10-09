@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
-  import type { Preload } from "@sapper/common"
+  // import type { Preload } from "@sapper/common"
 
-  export const preload: Preload = async function (this, page, session) {
+  export async function preload(page, session) {
     try {
       const response = await this.fetch(
         `${process.env.SAPPER_APP_BASE_URL}/auth/activate.json?token=${page.query.token}`,
@@ -23,8 +23,8 @@
   }
 </script>
 
-<script lang="ts" s>
-  export let data
+<script lang="ts">
+  export let data: string
 </script>
 
 <section>{data}</section>
