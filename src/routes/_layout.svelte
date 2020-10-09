@@ -10,43 +10,6 @@
 </script>
 
 <style>
-  :global(:root) {
-    --bg-color: #1a1f28;
-    --bg-secondary-color: #1a1f28;
-    --color-primary: #ffae57;
-    --color-lightGrey: #242b38;
-    --color-grey: #738699;
-    --color-darkGrey: #d9d7ce;
-    --color-error: red;
-    --color-success: blue;
-    --grid-maxWidth: 120rem;
-    --grid-gutter: 2rem;
-    --font-size: 1.6rem;
-    --font-family: "Helvetica Neue", sans-serif;
-  }
-
-  /* https://github.com/sveggiani/vscode-field-lights/blob/master/themes/Field%20Lights-color-theme.json */
-  :global(body) {
-    background-color: var(--bg-color);
-    color: var(--color-darkGrey);
-  }
-
-  :global(input) {
-    background-color: var(--color-lightGrey);
-    color: var(--color-darkGrey);
-  }
-
-  :global(::placeholder) {
-    color: var(--color-darkGrey);
-  }
-
-  :global(.card) {
-    background-color: var(--bg-color);
-    text-align: center;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-  }
   main {
     position: relative;
   }

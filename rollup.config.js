@@ -8,7 +8,6 @@ import sveltePreprocess from "svelte-preprocess"
 import typescript from "@rollup/plugin-typescript"
 import config from "sapper/config/rollup.js"
 import sapperEnv from "sapper-environment"
-import postcss from "rollup-plugin-postcss"
 import pkg from "./package.json"
 
 const mode = process.env.NODE_ENV
@@ -98,11 +97,6 @@ export default {
       }),
       commonjs(),
       typescript({ sourceMap: dev }),
-      postcss({
-        extract: true,
-        minimize: !dev,
-        sourceMap: dev,
-      }),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require("module").builtinModules
