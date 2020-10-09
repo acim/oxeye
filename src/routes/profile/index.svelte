@@ -1,7 +1,8 @@
 <script context="module" lang="ts">
-  import type { Preload } from "@sapper/common"
+  // import type { Preload } from "@sapper/common"
+  import type { UserSimple } from "../../models/User"
 
-  export const preload: Preload = async function (this, page, session) {
+  export async function preload(page, session) {
     if (!session || !session.user) {
       this.redirect(302, "login")
       return
@@ -25,9 +26,9 @@
   import PasswordChangeForm from "../../components/PasswordChangeForm.svelte"
   import { Container, Card } from "svelte-chota"
 
-  export let data
-  let currentPassword
-  let newPassword
+  export let data: UserSimple
+  let currentPassword: string
+  let newPassword: string
   const submit = () => {
     console.log("submit pressed")
   }
