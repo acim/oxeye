@@ -26,7 +26,7 @@
     "hpp": "^0.2.3",
     "jsonwebtoken": "^8.5.1",
     "mailgun-js": "^0.22.0",
-    "mongoose": "^5.10.8",
+    "mongoose": "^5.10.9",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
     "randomstring": "^1.1.5",
