@@ -61,7 +61,7 @@
     "@types/mongoose": "^5.7.36",
     "@types/mongoose-unique-validator": "^1.0.4",
     "@types/morgan": "^1.9.1",
-    "@types/node": "^14.14.2",
+    "@types/node": "^14.14.3",
     "@types/randomstring": "^1.1.6",
     "@types/validator": "^13.1.0",
     "@types/winston": "^2.4.4",
