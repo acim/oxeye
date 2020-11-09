@@ -71,7 +71,7 @@
     "sapper": "^0.28.10",
     "sapper-environment": "^1.0.1",
     "svelte": "^3.29.4",
-    "svelte-check": "^1.1.10",
+    "svelte-check": "^1.1.11",
     "svelte-chota": "^1.7.1",
     "svelte-preprocess": "^4.5.2",
     "tslib": "^2.0.3",
